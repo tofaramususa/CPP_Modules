@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   megaphone copy.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tofaramususa <tofaramususa@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 18:37:23 by tofaramusus       #+#    #+#             */
-/*   Updated: 2023/09/11 18:37:24 by tofaramusus      ###   ########.fr       */
+/*   Created: 2023/09/11 22:01:53 by tofaramusus       #+#    #+#             */
+/*   Updated: 2023/09/11 22:07:21 by tofaramusus      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int main ()
+int main(int ac, char **argv)
 {
-	std::cout << "Hello World!";
-	return 0;
+	if(ac == 1)
+	{
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
+	}
+	else
+	{
+		for(int i = 1; i < ac; i++)
+		{
+			std::string input(argv[i]);
+			for(std::string::size_type j = 0; j < input.length(); j++)
+			{
+				input[j] = toupper(input[j]);
+			}
+			std::cout << input;
+		}
+		std::cout << std::endl;
+	}
 }
-
-// stdio streams
