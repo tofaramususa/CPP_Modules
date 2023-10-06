@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tofaramususa <tofaramususa@student.42.f    +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 18:37:23 by tofaramusus       #+#    #+#             */
-/*   Updated: 2023/09/11 18:37:24 by tofaramusus      ###   ########.fr       */
+/*   Created: 2023/09/15 14:06:36 by tmususa           #+#    #+#             */
+/*   Updated: 2023/09/15 15:46:59 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 
-int main ()
-{
-	std::cout << "Hello World!";
-	return 0;
-}
+#ifndef CONTACT_H
+#define CONTACT_H
 
-// stdio streams
+class Contact
+{
+	private:
+	std::string firstname;
+	std::string lastname;
+	std::string nickname;
+	std::string phone_number;
+	std::string secret;
+
+} ;
+
+#endif

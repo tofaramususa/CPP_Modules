@@ -62,3 +62,11 @@ Non-member functions and non attributes: static keyword. This means some functio
 Pointers to members: .* operator??
 Really understand the initialisation list and have const code as much as possible. 
 Must understand all these notions to complete these assignments;
+
+OOP Articles Notes:
+Two characteristics of objects -- State and Behaviour;
+Encapsulation: Hiding internal state and requiring all interaction to be performed through an object's methods is known as data encapsulation — a fundamental principle of object-oriented programming. The object remains in control of how the outside world is allowed to use it
+https://docs.oracle.com/javase/tutorial/java/concepts/index.html
+Allows classes to inherit commonly used state and behavior
+Interface:  Methods form the object's interface with the outside world;
+Packages:  There are literally thousands of classes to choose from. This allows you, the programmer, to focus on the design of your particular application, rather than the infrastructure required to make it work.

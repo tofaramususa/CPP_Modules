@@ -1,6 +1,6 @@
-NAME = PhoneBook
+NAME = megaphone
 
-SRCS = Contact.cpp PhoneBook.cpp
+SRCS = megaphone.cpp
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror
@@ -12,7 +12,7 @@ all: $(NAME)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ) PhoneBook.hpp Contact.hpp
+$(NAME): $(OBJ)
 	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
 
 clean: 
