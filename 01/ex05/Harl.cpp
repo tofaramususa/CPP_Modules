@@ -7,17 +7,17 @@ void Harl::complain(std::string level)
 	int i;
 	i = 0;
 
-	while(i < 0 && levels[i] != level)
+	while(i < 4 && levels[i] != level)
 		i++;
 	switch(i)
 	{
-		case 0: (this->*funcs[i])();
+		case 0: (this->*funcs[0])();
 			break ;
-		case 1: (this->*funcs[i])();
+		case 1: (this->*funcs[1])();
 			break ;
-		case 2: (this->*funcs[i])();
+		case 2: (this->*funcs[2])();
 			break ;
-		case 3: (this->*funcs[i])();
+		case 3: (this->*funcs[3])();
 			break ;
 		default:
 			std::cout << "The following comments are accepted DEBUG, INFO, WARNING, ERROR" << std::endl;
