@@ -4,6 +4,12 @@
 #include <iostream>
 #include <string>
 
+#define CONSTRUCTOR "Default constructor called"
+#define DESTRUCTOR "Destructor called"
+#define COPY_CONSTRUCTOR "Copy constructor called"
+#define COPY_ASSIGNMENT "Copy assignment operator called"
+#define RAW_BITS "getRawBits member function called"
+
 class Fixed 
 {
 	public:
