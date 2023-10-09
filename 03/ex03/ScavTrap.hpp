@@ -2,6 +2,8 @@
 #define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
+#include <iostream>
+#include <string>
 
 #define SCAV_CONSTRUCTOR "SvacTrap Default constructor called"
 #define SCAV_DESTRUCTOR "SvacTrap Destructor called"

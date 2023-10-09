@@ -2,6 +2,8 @@
 #define POINT_HPP
 
 #include "Fixed.hpp"
+#include <iostream>
+#include <string>
 
 class Point
 {
