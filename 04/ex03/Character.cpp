@@ -1,11 +1,11 @@
 #include "Character.hpp"
 
-Character::Character() : name("Start"), inventory{NULL,NULL,NULL,NULL}
+Character::Character() : name("Start"), inventory{NULL, NULL, NULL, NULL}
 {
 	std::cout << "Character Default Constructor Called" << std::endl;
 }
 
-Character::Character(const std::string &name) : name(name), inventory{NULL,NULL,NULL,NULL}
+Character::Character(const std::string &name) : name(name), inventory{NULL, NULL,NULL, NULL}
 {
 	std::cout << "Character Parameterized Constructor Called" << std::endl;	
 }

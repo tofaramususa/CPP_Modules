@@ -6,43 +6,86 @@
 /*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:47:50 by tmususa           #+#    #+#             */
-/*   Updated: 2023/09/15 14:11:19 by tmususa          ###   ########.fr       */
+/*   Updated: 2023/10/10 16:23:54 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void displayPhoneBook(PhoneBook book)
-{
-	//l know l will use substr and also setw;
-}
 
+PhoneBook::PhoneBook() : oldestContactIndex(0) {};
 
-void setContactValues(PhoneBook book)
-{
-	
-}
 //add the contact to PhoneBook, it should take a Contact object as input and assign the values
-void add(void)
+void PhoneBook::add(void)
 {
-	//prompt the user for each of the inputs and also do not move on if field is empty; 
-	//for this l can print field is empty and retry;
-	//so this i
+	Contact newContact(true);
+	setContacts(newContact);
 }
 
 //first thing is to display the contacts we currently have
-void search(void)
+void PhoneBook::search(void)
 {
-	// First check if there are any contacts if not then display message no contacts to search;
-	// display function to show the functions we have;
-	// then prompt the user for the index they want;
-	//then check if index is there then display the contact, one field per line;
-	//if index not correct then say no index and return rerun prompt;
+	int index;
+	while(displayPhoneBook())
+	{
+		std::stringstream value;
+		value << getPrompt("Enter the index of the contact you want: ");
+		int x = -1;
+		value >> x;
+		index = checkIndex(x);
+		if(index)
+		{
+			Contacts[index].displayContact();
+			break;			
+		}
+	}
 
-
-	
-	
 }
 
+std::string getPrompt(std::string prompt)
+{
+	std::string line; 
+	while(1)
+	{
+		std::cout << prompt << std::endl;
+		std::getline(std::cin, line);
+		if(line != "")
+			break ;
+	}
+	if(line == "EXIT")
+		exit(0);
+	return line;
+}
 
+void PhoneBook::setContacts(Contact Contact)
+{
+	Contacts[oldestContactIndex] = Contact;
+	if (oldestContactIndex == 7)
+	{
+		oldestContactIndex = 0;
+	}
+	else
+		oldestContactIndex += 1;
+}
 
+bool PhoneBook::displayPhoneBook()
+{
+	//if no contacts then display no contacts and return false;
+
+	//else display phonebook
+}
+
+int PhoneBook::checkIndex(int index)
+{
+	if(index < 0 || index > 7)
+	{
+		std::cout << "The index you entered is not between 0 and 7" << std::endl;
+		return NULL;
+	}
+	if(Contacts[index].isEmpty())
+	{
+		std::cout << "The index you entered returns an Empty Contact" << std::endl;
+		return NULL;
+	}
+	return index;
+}

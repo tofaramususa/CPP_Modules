@@ -6,6 +6,13 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
+/*  
+Default constructor
+• Copy constructor
+• Copy assignment operator
+• Destructor
+*/
+
 class Character : public ICharacter
 {
 	private:

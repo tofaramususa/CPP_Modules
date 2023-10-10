@@ -1,12 +1,12 @@
 #include "Cube.hpp"
 
 
-Cube::Cube() : type("cube")
+Cube::Cube() : AMateria("cube"), type("cube")
 {
 	std::cout << "Cube Class default constructor called" << std::endl;
 }
 
-Cube::Cube(std::string const & type) : type(type)
+Cube::Cube(std::string const & type) : AMateria(type), type("cube")
 {
 	std::cout << "Cube Class parameterised constructor called" << std::endl;
 }
@@ -16,7 +16,7 @@ Cube::~Cube()
 	std::cout << "Cube Class destructor called" << std::endl;	
 }
 
-Cube *Cube::clone()
+AMateria *Cube::clone() const
 {
 	std::cout << "Cube Class clone member function called" << std::endl;
 	return new Cube();

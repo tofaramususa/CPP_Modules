@@ -3,11 +3,11 @@
 
 #include <iostream>
 #include <string>
-#include "ICharacter.hpp"
+#include "AMateria.hpp"
 
-class Cube
+class Cube : AMateria
 {
-	protected:
+	private:
 	std::string type;
 
 	public:
@@ -19,7 +19,7 @@ class Cube
 
 	std::string const & getType() const; //Returns the materia type
 
-	Cube* clone();
+	AMateria* clone() const;
 	
 	virtual void use(ICharacter& target);
 };
