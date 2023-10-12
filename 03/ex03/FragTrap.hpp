@@ -10,7 +10,7 @@
 #define FRAG_COPY_CONSTRUCTOR "FragTrap Copy constructor called"
 #define FRAG_COPY_ASSIGNMENT "FragTrap Copy assignment operator called"
 #define FRAG_GETTER "FragTrap Getter function called"
-#define FRAG_PARAM_CONSTRUCTOR "FragTrap Parameterized constructor called"
+#define FRAG_PARA "Parameterized constructor called"
 
 /*  
 Default constructor

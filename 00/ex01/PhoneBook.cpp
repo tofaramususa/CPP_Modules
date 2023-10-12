@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:47:50 by tmususa           #+#    #+#             */
-/*   Updated: 2023/10/10 16:23:54 by tmususa          ###   ########.fr       */
+/*   Updated: 2023/10/11 14:20:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,52 @@ PhoneBook::PhoneBook() : oldestContactIndex(0) {};
 //add the contact to PhoneBook, it should take a Contact object as input and assign the values
 void PhoneBook::add(void)
 {
-	Contact newContact(true);
+	Contact newContact(false);
 	setContacts(newContact);
+}
+
+PhoneBook::PhoneBook(std::string value) : oldestContactIndex(0)
+{
+	std::string line;
+	
+	std::cout << value << std::endl;
+	for(;;)
+	{
+		std::cout << "ENTER ANY OF THE FOLLOWING [ADD] [SEARCH] [EXIT]:" << " ";
+		std::getline (std::cin,line);
+		if(line == "ADD")
+			add();
+		else if(line == "SEARCH")
+			search();
+		else if(line == "EXIT")
+			break ;
+	}
 }
 
 //first thing is to display the contacts we currently have
 void PhoneBook::search(void)
 {
 	int index;
-	while(displayPhoneBook())
+	if(Contacts[0].isEmpty())
 	{
+		std::cout << "No Contacts to search for. Please ADD some." << std::endl;
+		return ;
+	}
+	for(;;)
+	{
+		displayPhoneBook();
 		std::stringstream value;
-		value << getPrompt("Enter the index of the contact you want: ");
+		value << getInput("Enter the index of the contact you want: ");
 		int x = -1;
 		value >> x;
-		index = checkIndex(x);
-		if(index)
+		if(value.fail())
+		{
+			index = -1;
+			std::cout << "The index you entered is not an integer between 0 and 7" << std::endl;
+		}
+		else
+			index = checkIndex(x);
+		if(index != -1)
 		{
 			Contacts[index].displayContact();
 			break;			
@@ -42,18 +72,18 @@ void PhoneBook::search(void)
 
 }
 
-std::string getPrompt(std::string prompt)
+std::string getInput(std::string Input)
 {
 	std::string line; 
 	while(1)
 	{
-		std::cout << prompt << std::endl;
+		std::cout << Input << " ";
 		std::getline(std::cin, line);
 		if(line != "")
 			break ;
 	}
 	if(line == "EXIT")
-		exit(0);
+		std::exit(EXIT_SUCCESS);
 	return line;
 }
 
@@ -68,24 +98,56 @@ void PhoneBook::setContacts(Contact Contact)
 		oldestContactIndex += 1;
 }
 
-bool PhoneBook::displayPhoneBook()
+void PhoneBook::displayPhoneBook()
 {
 	//if no contacts then display no contacts and return false;
-
-	//else display phonebook
+	PhoneBook::printTitles();
+	for(int i = 0; i < 8; ++i)
+	{
+		if(!Contacts[i].isEmpty())
+		{
+			printContact(Contacts[i], i);
+		}
+	}
 }
 
 int PhoneBook::checkIndex(int index)
 {
 	if(index < 0 || index > 7)
 	{
-		std::cout << "The index you entered is not between 0 and 7" << std::endl;
-		return NULL;
+		std::cout << "The index you entered is not an integer between 0 and 7" << std::endl;
+		return -1;
 	}
 	if(Contacts[index].isEmpty())
 	{
-		std::cout << "The index you entered returns an Empty Contact" << std::endl;
-		return NULL;
+		std::cout << "There is no Contact at the index you requested" << std::endl;
+		return -1;
 	}
 	return index;
+}
+
+std::string PhoneBook::cutString(std::string text)
+{
+	if(text.length() > 10)
+	{
+		return text.substr(0, 9) + ".";
+	}
+	return text;
+	
+}
+
+void PhoneBook::printTitles()
+{
+	std::cout << std::setw(10) << "Index" << "|";
+	std::cout << std::setw(10) << "First Name" << "|";
+	std::cout << std::setw(10) << "Last Name" << "|";
+	std::cout << std::setw(10) << "Nickname" << "|" << std::endl;
+}
+
+void PhoneBook::printContact(Contact contact, int index)
+{
+	std::cout << std::setw(10) << index << "|";
+	std::cout << std::setw(10) << cutString(contact.getFirstName()) << "|";
+	std::cout << std::setw(10) << cutString(contact.getLastName()) << "|";
+	std::cout << std::setw(10) << cutString(contact.getNickname()) << "|" << std::endl;
 }

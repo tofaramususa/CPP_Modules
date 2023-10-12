@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 14:06:36 by tmususa           #+#    #+#             */
-/*   Updated: 2023/10/10 16:22:47 by tmususa          ###   ########.fr       */
+/*   Updated: 2023/10/11 13:14:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
+#include <iostream>
+#include <cstdlib>
 
 #ifndef CONTACT_H
 #define CONTACT_H
@@ -30,16 +33,16 @@ class Contact
 	Contact(bool Empty);
 	bool isEmpty();
 	void displayContact();
-	void getFirstName();
-	void getLastName();
-	void getNickname();
-	void getPhoneNumber();
-	void getSecret();
-	void setFirstName(std::string firstname);
-	void setLastName(std::string lastname);
-	void setNickname(std::string nickname);
-	void setPhoneNumber(std::string phonenumber);
-	void setSecret(std::string secret);
+	std::string getFirstName();
+	std::string getLastName();
+	std::string getNickname();
+	std::string getPhoneNumber();
+	std::string getSecret();
+	void setFirstName(std::string value);
+	void setLastName(std::string value);
+	void setNickname(std::string value);
+	void setPhoneNumber(std::string value);
+	void setSecret(std::string value);
 } ;
 
 #endif
