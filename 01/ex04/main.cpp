@@ -5,7 +5,7 @@ int main(int ac, char **av)
 {
 	if(ac != 4)
 	{
-		std::cerr << "Usage: " << av[0] << " filename s1 s2" << std::endl;
+		std::cout << "Usage: " << av[0] << " filename s1 s2" << std::endl;
 		return 1;
 	}
 
@@ -17,7 +17,7 @@ if(file.processFile())
 }
 else
 {
-	std::cerr << "Error: File processing failed. " << std::endl;
+	std::cout << "Error: File processing failed. " << std::endl;
 	return 1;
 }
 return 0;

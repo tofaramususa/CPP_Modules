@@ -6,7 +6,7 @@ bool FileProcessor::processFile()
 {
 	if(!openInputFile())
 	{
-		std::cerr << "Error: Unable to open input file: " << filename << std::endl;
+		std::cout << "Error: Unable to open input file: " << filename << std::endl;
 		return (false);
 	}
 	processline();
@@ -22,7 +22,7 @@ void FileProcessor::processline()
 
 	while(!inputFile.eof())
 	{
-		getline(inputFile, line);
+		std::getline(inputFile, line);
 		findAndReplace(line);
 		outputFile << line << std::endl;
 	}
@@ -37,7 +37,7 @@ bool FileProcessor::openInputFile()
 
 void FileProcessor::findAndReplace(std::string &line)
 {
-	for(size_t i = 0;; i += replaceString.length())
+	for(size_t i = 0;;)
 	{
 		i = line.find(searchString, i);
 		if(i == std::string::npos)

@@ -1,6 +1,6 @@
-NAME = megaphone
+NAME = ZombieHorde
 
-SRCS = megaphone.cpp
+SRCS = main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror

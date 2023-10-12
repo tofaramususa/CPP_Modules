@@ -45,5 +45,5 @@ void Harl::warning(void)
 }
 void Harl::error(void)
 {
-	std::cout << "[ ERRO4 ]\n" << ERROR_MESSAGE << std::endl;
+	std::cout << "[ ERROR ]\n" << ERROR_MESSAGE << std::endl;
 }
