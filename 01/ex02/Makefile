@@ -1,4 +1,4 @@
-NAME = main
+NAME = Reference
 
 SRCS = main.cpp
 

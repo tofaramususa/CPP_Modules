@@ -31,6 +31,8 @@ void Harl::complain(std::string level)
 				break ;
 			case 3: (this->error());
 				break ;
+			default:
+				std::cout << DEFAULT << std::endl;
 		}
 		i++;
 	}

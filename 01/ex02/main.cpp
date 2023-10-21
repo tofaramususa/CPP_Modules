@@ -10,7 +10,7 @@ int main()
 	std::string &stringREF = stringVAR;
 
 	std::cout <<  "The memory address of the string variable: " << GREEN << &stringVAR << RESET << std::endl;
-	std::cout <<  "The memory address of the stringPTR: " << GREEN << &stringPTR << RESET << std::endl;
+	std::cout <<  "The memory address of the stringPTR: " << GREEN << stringPTR << RESET << std::endl;
 	std::cout <<  "The memory address of the stringREF: " << GREEN << &stringREF << RESET << std::endl;
 
 	std::cout <<  "The value of the string variable: " << GREEN <<  stringVAR << RESET << std::endl;
