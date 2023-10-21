@@ -9,7 +9,7 @@ class FileProcessor
 {
 	public:
 	FileProcessor(const std::string &filename, const std::string &s1, const std::string &s2);
-	bool processFile() {};
+	bool processFile();
 
 	private:
 	std::string filename;
@@ -17,11 +17,11 @@ class FileProcessor
 	std::string replaceString;
 	std::ifstream inputFile;
 
-	bool openInputFile(){};
-	bool openOutputFile(){};
-	void findAndReplace(std::string &line){};
-	void processline(){};
-	void closeFiles(){};
+	bool openInputFile();
+	bool openOutputFile();
+	void findAndReplace(std::string &line);
+	void processline();
+	void closeFiles();
 };
 
 #endif

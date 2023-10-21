@@ -9,14 +9,14 @@ OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
 	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
 
 clean: 
-	rm -rf *.o
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

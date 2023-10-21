@@ -6,7 +6,7 @@
 /*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 22:01:53 by tofaramusus       #+#    #+#             */
-/*   Updated: 2023/10/10 17:55:53 by tmususa          ###   ########.fr       */
+/*   Updated: 2023/10/13 17:28:14 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int main(int ac, char **argv)
 			}
 			std::cout << input;
 		}
-		std::cout << " " << std::endl;
 		std::cout << std::endl;
 	}
 }

@@ -1,12 +1,20 @@
 #include "Harl.hpp"
 
+Harl::Harl(std::string level)
+{
+	complain(level);
+}
+
+Harl::~Harl()
+{
+	
+}
+
 void Harl::complain(std::string level)
 {
 	std::string levels[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	void (Harl::*funcs[4]) (void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	int i;
 	i = 0;
-
 	while(i < 4 && levels[i] != level)
 		i++;
 	if (i > 3)
@@ -15,16 +23,14 @@ void Harl::complain(std::string level)
 	{
 		switch(i)
 		{
-			case 0: (this->*funcs[i])();
-					break ;
-			case 1: (this->*funcs[i])();
-					break ;
-			case 2: (this->*funcs[i])();
-					break ;
-			case 3: (this->*funcs[i])();
+			case 0: (this->debug());
 				break ;
-			default:
-				std::cout << DEFAULT << std::endl;
+			case 1: (this->info());
+				break ;
+			case 2: (this->warning());
+				break ;
+			case 3: (this->error());
+				break ;
 		}
 		i++;
 	}
@@ -32,18 +38,18 @@ void Harl::complain(std::string level)
 
 void Harl::debug(void)
 {
-	std::cout << "[ DEBUG ]\n" << DEBUG_MESSAGE << std::endl;
+	std::cout << "[ DEBUG ]" << std::endl << DEBUG_MESSAGE << std::endl;
 }
 void Harl::info(void)
 {
-	std::cout << "[ INFO ]\n" << INFO_MESSAGE << std::endl;
+	std::cout << "[ INFO ]" << std::endl << INFO_MESSAGE << std::endl;
 
 }
 void Harl::warning(void)
 {
-	std::cout << "[ WARNING ]\n" << WARNING_MESSAGE << std::endl;	
+	std::cout << "[ WARNING ]"  << std::endl << WARNING_MESSAGE << std::endl;	
 }
 void Harl::error(void)
 {
-	std::cout << "[ ERROR ]\n" << ERROR_MESSAGE << std::endl;
+	std::cout << "[ ERROR ]"  << std::endl << ERROR_MESSAGE << std::endl;
 }

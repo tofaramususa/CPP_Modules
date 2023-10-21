@@ -5,7 +5,7 @@ int main(int ac, char **av)
 {
 	if(ac != 4)
 	{
-		std::cout << "Usage: " << av[0] << " filename s1 s2" << std::endl;
+		std::cout << "Program takes exactly THREE arguments. Thanks" << std::endl;
 		return 1;
 	}
 

@@ -1,6 +1,11 @@
 #include "FileProcessor.hpp"
 
-FileProcessor::FileProcessor(const std::string &filename, const std::string &s1, const std::string &s2) : filename(filename), searchString(s1), replaceString(s2) {}
+FileProcessor::FileProcessor(const std::string &filename, const std::string &s1, const std::string &s2) : filename(filename), searchString(s1), replaceString(s2) 
+{
+	this->filename = filename;
+	this->searchString =  s1;
+	this->replaceString = s2;
+}
 
 bool FileProcessor::processFile()
 {
@@ -39,13 +44,12 @@ void FileProcessor::findAndReplace(std::string &line)
 {
 	for(size_t i = 0;;)
 	{
-		i = line.find(searchString, i);
+		i = line.find(searchString);
 		if(i == std::string::npos)
 			break;
 		line.erase(i, searchString.length());
 		line.insert(i, replaceString);
 	}
-
 }
 
 void FileProcessor::closeFiles()

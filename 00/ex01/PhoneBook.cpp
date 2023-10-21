@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:47:50 by tmususa           #+#    #+#             */
-/*   Updated: 2023/10/11 14:20:58 by marvin           ###   ########.fr       */
+/*   Updated: 2023/10/21 14:37:23 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ PhoneBook::PhoneBook(std::string value) : oldestContactIndex(0)
 	std::string line;
 	
 	std::cout << value << std::endl;
-	for(;;)
+	while(1)
 	{
-		std::cout << "ENTER ANY OF THE FOLLOWING [ADD] [SEARCH] [EXIT]:" << " ";
-		std::getline (std::cin,line);
+		std::cout << "ENTER ANY OF THE FOLLOWING [ADD] [SEARCH] [EXIT]: ";
+		if(!std::getline (std::cin,line))
+			break ;
 		if(line == "ADD")
 			add();
 		else if(line == "SEARCH")
@@ -78,7 +79,8 @@ std::string getInput(std::string Input)
 	while(1)
 	{
 		std::cout << Input << " ";
-		std::getline(std::cin, line);
+		if(!std::getline(std::cin, line))
+			std::exit(EXIT_SUCCESS);
 		if(line != "")
 			break ;
 	}

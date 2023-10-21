@@ -16,7 +16,7 @@ $(NAME): $(OBJ) PhoneBook.hpp Contact.hpp
 	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
 
 clean: 
-	rm -rf *.o
+	rm -rf $(OBJ)
 
 fclean: clean
 	rm -f $(NAME)

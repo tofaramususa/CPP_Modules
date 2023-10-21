@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Zombie.hpp"
 
+Zombie::Zombie() {}
+
 Zombie::Zombie(const std::string _name) : name(_name)  {}
 
 void Zombie::announce(void)
@@ -10,5 +12,5 @@ void Zombie::announce(void)
 
 Zombie::~Zombie(void)
 {
-	std::cout << "Zombie" << name << ": has been destroyed..." << std::endl;
+	std::cout << "Zombie" << name << ": destroyed........." << std::endl;
 }
