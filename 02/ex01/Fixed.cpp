@@ -1,80 +1,61 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : fixed_point(0) 
+Fixed::Fixed() : RawBits(0) 
 {
 	std::cout << CONSTRUCTOR << std::endl; 
-
 }
 
 Fixed::Fixed(const Fixed &other) 
 {
-	*this = other;
 	std::cout << COPY_CONSTRUCTOR << std::endl; 
+	*this = other;
 }
 
 Fixed::~Fixed()
 {
 	std::cout << DESTRUCTOR << std::endl; 
-
-}
-
-int Fixed::getRawBits(void) const
-{
-	std::cout << RAW_BITS << std::endl; 
-	return fixed_point;
-}
-
-void Fixed::setRawBits(const int raw)
-{
-	fixed_point = raw;
-}
-
-Fixed &Fixed::operator=(const Fixed &other)
-{
-	if(this == &other)
-		return *this;
-	fixed_point = other.fixed_point;
-	std::cout << COPY_ASSIGNMENT << std::endl; 
-	return *this;
 }
 
 Fixed::Fixed(const int value)
 {
-	fixed_point = value << fractionalBits;
+	RawBits = value << fractionalBits;
 }
+
 Fixed::Fixed(const float value)
 {
-	fixed_point = static_cast<int> (value) << fractionalBits;
+	RawBits =  roundf((value) * (float) (1 << fractionalBits));
 }
 float Fixed::toFloat(void) const
 {
-	return static_cast<float>(fixed_point >> fractionalBits);
+	return (float) ((float) RawBits / (float) (1 << fractionalBits));
 }
+
 int Fixed::toInt(void)	const
 {
-	return fixed_point >> fractionalBits;
+	return RawBits >> fractionalBits;
 }
 
 int Fixed::getRawBits(void) const
 {
-	return fixed_point;
+	return this->RawBits;
 }
 
 void Fixed::setRawBits(const int raw)
 {
-	fixed_point = raw;
+	this->RawBits = raw;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	if(this == &other)
 		return *this;
-	fixed_point = other.fixed_point;
+	RawBits = other.RawBits;
 	return *this;
 }
 
 std::ostream &operator<<(std::ostream &stream, const Fixed &object)
 {
 	stream << object.toFloat();
+	return stream;
 }
 

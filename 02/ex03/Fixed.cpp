@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : fixed_point(0) 
+Fixed::Fixed() : RawBits(0) 
 {
 	std::cout << CONSTRUCTOR << std::endl; 
 
@@ -21,47 +21,47 @@ Fixed::~Fixed()
 int Fixed::getRawBits(void) const
 {
 	std::cout << RAW_BITS << std::endl; 
-	return fixed_point;
+	return RawBits;
 }
 
 void Fixed::setRawBits(const int raw)
 {
-	fixed_point = raw;
+	RawBits = raw;
 }
 
 Fixed Fixed::operator=(const Fixed &other)
 {
 	if(this == &other)
 		return *this;
-	fixed_point = other.fixed_point;
+	RawBits = other.RawBits;
 	std::cout << COPY_ASSIGNMENT << std::endl; 
 	return *this;
 }
 
-Fixed::Fixed(const int value) : fixed_point(value << fractionalBits)
+Fixed::Fixed(const int value) : RawBits(value << fractionalBits)
 {}
-Fixed::Fixed(const float value) : fixed_point(static_cast<int> (value) << fractionalBits)
+Fixed::Fixed(const float value) : RawBits(static_cast<int> (value) << fractionalBits)
 {}
 
 float Fixed::toFloat(void) const
 {
-	return static_cast<float>(fixed_point >> fractionalBits);
+	return static_cast<float>(RawBits >> fractionalBits);
 }
 int Fixed::toInt(void)	const
 {
-	return fixed_point >> fractionalBits;
+	return RawBits >> fractionalBits;
 }
 
 
 Fixed Fixed::operator++()
 {
-	this->fixed_point += 1;
+	this->RawBits += 1;
 	return *this;
 }
 
 Fixed Fixed::operator--()
 {
-	this->fixed_point -= 1;
+	this->RawBits -= 1;
 	return *this;
 }
 
@@ -81,7 +81,7 @@ Fixed Fixed::operator--(int)
 
 bool Fixed::operator==(const Fixed &rhs) const
 {
-	return fixed_point == rhs.fixed_point;
+	return RawBits == rhs.RawBits;
 }
 
 bool Fixed::operator!=(const Fixed &rhs) const
@@ -91,25 +91,25 @@ bool Fixed::operator!=(const Fixed &rhs) const
 
 bool Fixed::operator<(const Fixed &rhs) const
 {
-	return fixed_point < rhs.fixed_point;
+	return RawBits < rhs.RawBits;
 
 }
 
 bool Fixed::operator>(const Fixed &rhs) const
 {
-	return fixed_point > rhs.fixed_point;
+	return RawBits > rhs.RawBits;
 
 }
 
 bool Fixed::operator>=(const Fixed &rhs) const
 {
-	return fixed_point >= rhs.fixed_point;
+	return RawBits >= rhs.RawBits;
 
 }
 
 bool Fixed::operator<=(const Fixed &rhs) const
 {
-	return fixed_point <= rhs.fixed_point;
+	return RawBits <= rhs.RawBits;
 
 }
 

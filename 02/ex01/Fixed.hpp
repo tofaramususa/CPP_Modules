@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 #define CONSTRUCTOR "Default constructor called"
 #define DESTRUCTOR "Destructor called"
@@ -26,7 +27,7 @@ class Fixed
 	void setRawBits(const int raw);
 
 	private:
-	int fixed_point;
+	int RawBits;
 	static const int fractionalBits = 8;
 };
 
