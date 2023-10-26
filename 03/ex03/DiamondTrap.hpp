@@ -17,7 +17,12 @@ Default constructor
 class DiamondTrap : public FragTrap, public ScavTrap
 {
 	public:
+	DiamondTrap();
+	virtual ~DiamondTrap();
 	DiamondTrap(std::string &name);
+	DiamondTrap(const DiamondTrap &other);
+	DiamondTrap operator=(const DiamondTrap &other);
+
 	void whoAmI();
 	void attack(const std::string& target);
 

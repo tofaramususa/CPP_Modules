@@ -7,8 +7,8 @@ Fixed::Fixed() : RawBits(0)
 
 Fixed::Fixed(const Fixed &other) 
 {
-	*this = other;
 	std::cout << COPY_CONSTRUCTOR << std::endl; 
+	*this = other;
 }
 
 Fixed::~Fixed()
@@ -18,21 +18,25 @@ Fixed::~Fixed()
 
 Fixed::Fixed(const int value)
 {
+	std::cout << "Integer Constructor Called" << std::endl;
 	RawBits = value << fractionalBits;
 }
 
 Fixed::Fixed(const float value)
 {
+	std::cout << "Float Constructor Called" << std::endl;
 	RawBits =  roundf((value) * (float) (1 << fractionalBits));
 }
 
 float Fixed::toFloat(void) const
 {
+	std::cout << "toFloat Method Called" << std::endl;
 	return (float) ((float) RawBits / (float) (1 << fractionalBits));
 }
 
 int Fixed::toInt(void)	const
 {
+	std::cout << "toInt Method Called" << std::endl;
 	return RawBits >> fractionalBits;
 }
 
@@ -44,10 +48,11 @@ int Fixed::getRawBits(void) const
 
 void Fixed::setRawBits(const int raw)
 {
+	std::cout << "setRawBits Method Called" << std::endl;
 	this->RawBits = raw;
 }
 
-Fixed Fixed::operator=(const Fixed &other)
+Fixed &Fixed::operator=(const Fixed &other)
 {
 	if(this == &other)
 		return *this;
@@ -60,14 +65,14 @@ Fixed Fixed::operator=(const Fixed &other)
 //Pre-increment
 Fixed Fixed::operator++()
 {
-	this->RawBits += 1;
+	++this->RawBits;
 	return *this;
 }
 
 //Pre-decrement
 Fixed Fixed::operator--()
 {
-	this->RawBits -= 1;
+	--this->RawBits;
 	return *this;
 }
 
@@ -149,7 +154,7 @@ Fixed Fixed::min(Fixed &lhs, Fixed &rhs)
 	return lhs < rhs ? lhs : rhs;
 }
 
-Fixed Fixed::min(const Fixed &lhs, const Fixed &rhs)
+Fixed Fixed::min(Fixed const &lhs, const Fixed &rhs)
 {
 	return lhs < rhs ? lhs : rhs;
 }
@@ -159,12 +164,12 @@ Fixed Fixed::max(Fixed &lhs, Fixed &rhs)
 	return lhs > rhs ? lhs : rhs;
 }
 
-Fixed Fixed::max(const Fixed &lhs, const Fixed &rhs)
+Fixed Fixed::max(Fixed const &lhs, Fixed const &rhs)
 {
 	return lhs > rhs ? lhs : rhs;
 }
 
-std::ostream &operator<<(std::ostream &stream, const Fixed &object)
+std::ostream &operator<<(std::ostream &stream, Fixed const &object)
 {
 	stream << object.toFloat();
 	return stream;

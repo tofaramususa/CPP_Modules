@@ -21,7 +21,7 @@ class Fixed
 	float toFloat(void) const;
 	int toInt(void)	const;
 	Fixed(const Fixed &other); //copy constructor
-	Fixed operator=(const Fixed &other); //copy assignment operator overload 
+	Fixed &operator=(const Fixed &other); //copy assignment operator overload 
 	/*Increment Operators*/
 	Fixed operator++();
 	Fixed operator--();

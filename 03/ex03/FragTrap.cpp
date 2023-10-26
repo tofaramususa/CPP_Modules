@@ -7,7 +7,7 @@ FragTrap::FragTrap()
 
 FragTrap::FragTrap(std::string& name) : ClapTrap(name)
 {
-	std::cout << FRAG_PARAM_CONSTRUCTOR << std::endl;
+	std::cout << "FragTrap Param Constructor Called" << std::endl;
 	std::cout << "FragTrap named " << name << " has been created!" << std::endl;
 	Hit = 100;
 	Energy = 100;

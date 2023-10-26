@@ -22,11 +22,11 @@ class ClapTrap
 {
 
 	public:
-	ClapTrap(std::string &_name);
-	ClapTrap();
-	~ClapTrap();
-	ClapTrap(const ClapTrap &other);
-	ClapTrap operator=(const ClapTrap &other);
+	ClapTrap(std::string &_name); //Parameter Constructor
+	ClapTrap(); //Default Constructor
+	~ClapTrap(); //Default Destructor
+	ClapTrap(const ClapTrap &other); //Copy Constructor
+	ClapTrap operator=(const ClapTrap &other); //Copy Assignment Operator
 	unsigned int GetEnergyPoints() const;
 	unsigned int GetHitPoints() const;
 	unsigned int GetDamagePoints() const;
