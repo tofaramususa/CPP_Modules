@@ -12,12 +12,7 @@
 #define SCAV_GETTER "SvacTrap Getter function called"
 #define SCAV_PARAM_CONSTRUCTOR "SvacTrap Parameterized constructor called"
 
-/*  
-Default constructor
-• Copy constructor
-• Copy assignment operator
-• Destructor
-*/
+//Need to implement othodox canonical form
 
 class ScavTrap : public ClapTrap
 {

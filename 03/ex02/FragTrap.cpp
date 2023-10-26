@@ -1,17 +1,22 @@
 #include "FragTrap.hpp"
-	
+
 FragTrap::FragTrap()
 {
+	std::string input("Default");
+	Name = input;
+	SetHitPoints(100);
+	SetEnergyPoints(100);
+	SetDamagePoints(30);
 	std::cout << FRAG_CONSTRUCTOR << std::endl;
 }
 
 FragTrap::FragTrap(std::string& name) : ClapTrap(name)
 {
-	std::cout << "FragTrap Param Constructor Called" << std::endl;
+	std::cout << FRAG_PARAM_CONSTRUCTOR  << std::endl;
 	std::cout << "FragTrap named " << name << " has been created!" << std::endl;
-	Hit = 100;
-	Energy = 100;
-	Damage = 30;	
+	SetHitPoints(100);
+	SetEnergyPoints(100);
+	SetDamagePoints(30);
 }
 
 FragTrap::~FragTrap()

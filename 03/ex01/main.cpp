@@ -20,6 +20,7 @@ int main(void)
 		a.beRepaired(10);
 		a.beRepaired(10);
 		std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
+		a.guardGate();
 	}
 	// {
 	// 	std::string input("BAD_GUY");
