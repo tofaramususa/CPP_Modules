@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap() : Name("no_name")
 {
 	std::cout << CONSTRUCTOR << std::endl;
 }
@@ -31,42 +31,45 @@ ClapTrap::~ClapTrap()
 
 ClapTrap::ClapTrap(std::string &_name) : Name(_name), Hit(10), Energy(10), Damage(0) 
 {
-
 	std::cout << PARAM_CONSTRUCTOR << std::endl;
-	std::cout << "ScavTrap named " << _name << " has been created!" << std::endl;
 }
 
 void ClapTrap::attack(const std::string& target)
 {
-	if(this->Energy > 0)
+	if(GetEnergyPoints() > 0 && GetHitPoints() > 0)
 	{
 		std::cout << "ClapTrap " << GetName() << "attacks " << target << ", causing" 
 			<< GetDamagePoints() << "points of damage!" << std::endl; 
-		this->Energy -= 1;
+		takeDamage(GetDamagePoints());
+		this->Energy--;
 	}
 	else
-		std::cout << "Claptrap" << GetName() << " is out of energy!" << std::endl;
+		std::cout << "Claptrap" << GetName() << " is out of energy or hit points!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if(this->Hit > 0)
+	if(GetEnergyPoints() > 0 && GetHitPoints() > 0)
 	{
-		std::cout << "ClapTrap " << GetName() << " takes damage of  " << amount << "points" 
-		 << std::endl; 
-		 this->Hit -= amount;
+		std::cout << "ClapTrap " << GetName() << " takes damage of  " << amount << std::endl; 
+		if(GetHitPoints() > amount)
+		{
+			SetHitPoints(GetHitPoints() - amount);
+		}
+		else
+			SetHitPoints(0);
 	}
 	else
-		std::cout << "Claptrap " << GetName() << " is out of hit points!" << std::endl;
+		std::cout << "Claptrap " << GetName() << " is out of hit or energy points!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if(Hit > 0 && Energy > 0)
+	if(GetEnergyPoints() > 0)
 	{
 		std::cout << "ClapTrap " << GetName() << " has been repaired with  " << amount << "of points" 
 		 << std::endl;
-		this->Hit += amount;
+		SetHitPoints(GetHitPoints() + amount);
 		this->Energy--;
 	}
 	else
@@ -76,24 +79,40 @@ void ClapTrap::beRepaired(unsigned int amount)
 unsigned int ClapTrap::GetEnergyPoints() const
 {
 
-	std::cout << GETTER << std::endl;
+	std::cout << "Get Energy Points Function Called" << std::endl;
 	return this->Energy;
 }
 
 unsigned int ClapTrap::GetHitPoints() const
 {
-	std::cout << GETTER << std::endl;
+	std::cout << "Get Hit Points Function Called" << std::endl;
 	return this->Hit;
 }
 
 unsigned int ClapTrap::GetDamagePoints() const
 {
-	std::cout << GETTER << std::endl;
+	std::cout << "Get Damage Points Function Called" << std::endl;
 	return this->Damage;
 }
 
 std::string ClapTrap::GetName() const
 {
-	std::cout << GETTER << std::endl;
+	std::cout << "Get Name Function Called" << std::endl;
 	return this->Name;
+}
+
+void ClapTrap::SetEnergyPoints(unsigned int value)
+{
+	std::cout << "Set Energy Points Function Called" << std::endl;
+		this->Energy = value;
+}
+void ClapTrap::SetHitPoints(unsigned int value)
+{
+	std::cout << "Set Hit Points Function Called" << std::endl;
+	this->Hit = value;
+}
+void ClapTrap::SetDamagePoints(unsigned int value)
+{
+	std::cout << "Set Damage Points Function Called" << std::endl;
+	this->Damage = value;
 }
