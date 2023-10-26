@@ -20,7 +20,6 @@ Default constructor
 
 class ClapTrap
 {
-
 	public:
 	ClapTrap(std::string &_name);
 	ClapTrap();

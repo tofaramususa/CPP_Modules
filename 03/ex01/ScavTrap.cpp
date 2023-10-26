@@ -2,7 +2,12 @@
 	
 ScavTrap::ScavTrap()
 {
+	std::string input("Default");
+	Name = input;
 	std::cout << SCAV_CONSTRUCTOR << std::endl;
+	SetHitPoints(100);
+	SetEnergyPoints(50);
+	SetDamagePoints(20);
 }
 
 ScavTrap::ScavTrap(std::string& name) : ClapTrap(name)
@@ -21,14 +26,20 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::attack(const std::string& target)
 {
-	if(this->Energy > 0)
+	if(GetEnergyPoints() > 0 && GetHitPoints() > 0)
 	{
-		std::cout << "ScavTrap " << GetName() << "attacks " << target << ", causing" 
-			<< GetDamagePoints() << "points of damage!" << std::endl; 
-		this->Energy -= 1;
+		std::cout << "ScavTrap " << GetName() << " attacks " << target << " causing " 
+			<< GetDamagePoints() << " points of damage!" << std::endl;
+		if(GetHitPoints() > GetDamagePoints())
+		{
+			SetHitPoints(GetHitPoints() - GetDamagePoints());
+		}
+		else
+			SetHitPoints(0);
+		this->Energy--;
 	}
 	else
-		std::cout << "ScavTrap" << GetName() << " is out of energy!" << std::endl;	
+		std::cout << "ScavTrap " << GetName() << " is out of energy or hit points!" << std::endl;
 }
 
 void ScavTrap::guardGate()
