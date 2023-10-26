@@ -18,16 +18,17 @@ class DiamondTrap : public FragTrap, public ScavTrap
 {
 	public:
 	DiamondTrap();
-	virtual ~DiamondTrap();
+	~DiamondTrap();
 	DiamondTrap(std::string &name);
 	DiamondTrap(const DiamondTrap &other);
 	DiamondTrap operator=(const DiamondTrap &other);
 
 	void whoAmI();
 	void attack(const std::string& target);
+	std::string getDiamondName();
 
 	private:
-	std::string &Name;
+	std::string Name;
 };
 
 #endif

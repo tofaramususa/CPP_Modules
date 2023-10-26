@@ -12,15 +12,16 @@
 #define SCAV_GETTER "SvacTrap Getter function called"
 #define SCAV_PARAM_CONSTRUCTOR "SvacTrap Parameterized constructor called"
 
+//Need to implement othodox canonical form
 
 class ScavTrap : virtual public ClapTrap
 {
 	public:
 	ScavTrap();
 	ScavTrap(std::string& name);
-	~ScavTrap();
+	virtual ~ScavTrap();
 	void attack(const std::string& target);
-	void guardGate();	
+	void guardGate();
 };
 
 #endif
