@@ -25,10 +25,14 @@ class DiamondTrap : public FragTrap, public ScavTrap
 
 	void whoAmI();
 	void attack(const std::string& target);
-	std::string getDiamondName();
-
+	std::string getDiamondName() const; 
+	unsigned int getDiamondHit() const; 
+	unsigned int getDiamondEnergy() const;
+	unsigned int getDiamondDamage() const; 
 	private:
 	std::string Name;
 };
+
+std::ostream &operator<<(std::ostream &stream, const DiamondTrap &object);
 
 #endif

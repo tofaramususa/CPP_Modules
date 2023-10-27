@@ -19,7 +19,6 @@ Default constructor
 
 class ClapTrap
 {
-
 	public:
 	ClapTrap(std::string &_name); //Parameter Constructor
 	ClapTrap(); //Default Constructor

@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 	
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::string input("Default");
 	Name = input;
@@ -47,7 +47,7 @@ void ScavTrap::guardGate()
 		std::cout << "ScavTrap " << GetName() << " is now in Gate Keeper Mode" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
 	std::cout << SCAV_COPY_CONSTRUCTOR << std::endl;
 	*this = other;
@@ -63,4 +63,5 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 		this->Energy = other.GetEnergyPoints();
 		this->Damage = other.GetDamagePoints();
 	}
+	return *this;
 }

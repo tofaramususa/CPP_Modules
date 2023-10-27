@@ -4,28 +4,31 @@
 int main(void)
 {
 	{
-		std::string input("BAD_GUY");
-		std::string input_2("GOOD_GUY");
+		std::string input("BAD GUY");
+		std::string input_2("GOOD GUY");
 		FragTrap a(input_2);
 
 		std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
+		std::cout << "a " << a.GetName() << " has Energy points " << a.GetEnergyPoints() << std::endl;
 		a.attack(input);
 		a.attack(input);
 		a.SetDamagePoints(60);
 		a.attack(input);
 		a.attack(input);
 		std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
+		std::cout << "a " << a.GetName() << " has Energy points " << a.GetEnergyPoints() << std::endl;
 		a.beRepaired(10);
 		a.beRepaired(10);
 		a.beRepaired(10);
 		a.beRepaired(10);
 		a.beRepaired(10);
 		std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
+		std::cout << "a " << a.GetName() << " has Energy points " << a.GetEnergyPoints() << std::endl;
 		a.highFivesGuys();
 	}
 	// {
-	// 	std::string input("BAD_GUY");
-	// 	std::string input_2("GOOD_GUY");
+	// 	std::string input("BAD GUY");
+	// 	std::string input_2("GOOD GUY");
 	// 	ScavTrap a(input_2);
 
 	// 	std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
@@ -45,8 +48,8 @@ int main(void)
 	// }
 
 	// {
-	// 	std::string input("BAD_GUY");
-	// 	std::string input_2("GOOD_GUY");
+	// 	std::string input("BAD GUY");
+	// 	std::string input_2("GOOD GUY");
 	// 	ClapTrap a;
 	// 	ClapTrap b(input_2);
 

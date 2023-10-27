@@ -1,6 +1,6 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap()
+FragTrap::FragTrap() : ClapTrap()
 {
 	std::string input("Default");
 	Name = input;
@@ -29,11 +29,10 @@ void FragTrap::highFivesGuys(void)
 		std::cout << "Give me a High Fives ✋!" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other)
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other)
 {
 	std::cout << FRAG_COPY_CONSTRUCTOR << std::endl;
 	*this = other;
-
 }
 
 FragTrap &FragTrap::operator=(const FragTrap &other)
@@ -46,4 +45,5 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 		this->Energy = other.GetEnergyPoints();
 		this->Damage = other.GetDamagePoints();
 	}
+	return *this;
 }

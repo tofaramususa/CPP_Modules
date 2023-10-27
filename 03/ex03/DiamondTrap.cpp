@@ -1,6 +1,6 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap()
+DiamondTrap::DiamondTrap() : ClapTrap(), FragTrap(), ScavTrap(), Name()
 {
 	std::cout << "DiamondTrap Default Constructor Called" << std::endl;
 	std::string name("Default");
@@ -21,10 +21,10 @@ DiamondTrap::DiamondTrap(std::string &name) : ClapTrap(name), FragTrap(name), Sc
 }
 
 
-DiamondTrap::DiamondTrap(const DiamondTrap &other)
+DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(other), FragTrap(other) , ScavTrap(other)
 {
-	*this = other;
 	std::cout << "DiamondTrap Copy Constructor Called" << std::endl;
+	*this = other;
 }
 
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
@@ -55,7 +55,28 @@ void DiamondTrap::attack(const std::string& target)
 	ScavTrap::attack(target);
 }
 
-std::string DiamondTrap::getDiamondName()
+std::string DiamondTrap::getDiamondName() const
+ {
+        return this->Name;
+ }
+ 
+unsigned int DiamondTrap::getDiamondHit() const
 {
-	return this->Name;
+       return this->Hit;
+}
+unsigned int DiamondTrap::getDiamondEnergy() const
+{
+       return this->Energy;
+}
+
+unsigned int DiamondTrap::getDiamondDamage() const
+{
+       return this->Damage;
+}
+
+std::ostream &operator<<(std::ostream &stream, const DiamondTrap &object)
+{
+       stream << "Object " << object.GetName() << " has hit points: " << object.getDiamondHit() << " ,energy points: "
+       << object.getDiamondEnergy() << " and attack damage " << object.getDiamondDamage();
+       return stream;
 }

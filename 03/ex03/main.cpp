@@ -8,14 +8,19 @@ int main(void)
 		std::string input("test");
 		DiamondTrap a(input);
 		a.whoAmI();
+		std::cout << a << std::endl;
 		a.attack(input);
-		DiamondTrap b(a);
+		std::cout << a << std::endl;
+		a.whoAmI();
+		DiamondTrap b(a); //something wrong with copy constructor
 		b.whoAmI();
+		b.highFivesGuys();
+        b.guardGate();
 
 	}
 	// {
-	// 	std::string input("BAD_GUY");
-	// 	std::string input_2("GOOD_GUY");
+	// 	std::string input("BAD GUY");
+	// 	std::string input_2("GOOD GUY");
 	// 	FragTrap a(input_2);
 
 	// 	std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
@@ -34,8 +39,8 @@ int main(void)
 	// 	a.highFivesGuys();
 	// }
 	// {
-	// 	std::string input("BAD_GUY");
-	// 	std::string input_2("GOOD_GUY");
+	// 	std::string input("BAD GUY");
+	// 	std::string input_2("GOOD GUY");
 	// 	ScavTrap a(input_2);
 
 	// 	std::cout << "a " << a.GetName() << " has hit points " << a.GetHitPoints() << std::endl;
@@ -55,8 +60,8 @@ int main(void)
 	// }
 
 	// {
-	// 	std::string input("BAD_GUY");
-	// 	std::string input_2("GOOD_GUY");
+	// 	std::string input("BAD GUY");
+	// 	std::string input_2("GOOD GUY");
 	// 	ClapTrap a;
 	// 	ClapTrap b(input_2);
 

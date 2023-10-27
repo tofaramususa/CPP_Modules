@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 	
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::string input("Default");
 	Name = input;
@@ -10,7 +10,16 @@ ScavTrap::ScavTrap()
 	SetDamagePoints(20);
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+ScavTrap::ScavTrap(std::string& name) : ClapTrap(name)
+{
+	std::cout << SCAV_PARAM_CONSTRUCTOR << std::endl;
+	std::cout << "ScavTrap named " << name << " has been created!" << std::endl;
+	Hit = 100;
+	Energy = 50;
+	Damage = 20;	
+}
+
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other)
 {
 	std::cout << SCAV_COPY_CONSTRUCTOR << std::endl;
 	*this = other;
@@ -26,6 +35,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 		this->Energy = other.GetEnergyPoints();
 		this->Damage = other.GetDamagePoints();
 	}
+	return *this;
 }
 
 ScavTrap::~ScavTrap()
