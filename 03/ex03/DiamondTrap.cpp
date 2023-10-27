@@ -4,6 +4,7 @@ DiamondTrap::DiamondTrap()
 {
 	std::cout << "DiamondTrap Default Constructor Called" << std::endl;
 	std::string name("Default");
+	std::cout << "DiamondTrap with name " << name << " created!" << std::endl;
 	this->Name = name;
 	this->Hit = FragTrap::Hit;
     this->Energy= ScavTrap::Energy;
@@ -12,6 +13,8 @@ DiamondTrap::DiamondTrap()
 
 DiamondTrap::DiamondTrap(std::string &name) : ClapTrap(name), FragTrap(name), ScavTrap(name), Name(name)
 {
+	std::cout << "DiamondTrap Parameterized Constructor Called" << std::endl;
+	std::cout << "DiamondTrap with name " << name << " created!" << std::endl;
 	this->Hit = FragTrap::Hit;
     this->Energy= ScavTrap::Energy;
     this->Damage = FragTrap::Damage;
@@ -29,7 +32,6 @@ DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
 	std::cout << COPY_ASSIGNMENT << std::endl;
 	if(this != &other)
 	{
-
 		this->Name = other.Name;
 		this->Hit = other.Hit;
 		this->Energy = other.Energy;

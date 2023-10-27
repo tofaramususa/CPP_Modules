@@ -5,7 +5,13 @@
 int main(void)
 {
 	{
-		
+		std::string input("test");
+		DiamondTrap a(input);
+		a.whoAmI();
+		a.attack(input);
+		DiamondTrap b(a);
+		b.whoAmI();
+
 	}
 	// {
 	// 	std::string input("BAD_GUY");
