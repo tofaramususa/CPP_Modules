@@ -10,13 +10,22 @@ ScavTrap::ScavTrap()
 	SetDamagePoints(20);
 }
 
-ScavTrap::ScavTrap(std::string& name) : ClapTrap(name)
+ScavTrap::ScavTrap(const ScavTrap &other)
 {
-	std::cout << SCAV_PARAM_CONSTRUCTOR << std::endl;
-	std::cout << "ScavTrap named " << name << " has been created!" << std::endl;
-	Hit = 100;
-	Energy = 50;
-	Damage = 20;	
+	std::cout << SCAV_COPY_CONSTRUCTOR << std::endl;
+	*this = other;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+{
+	std::cout << SCAV_COPY_ASSIGNMENT << std::endl;
+	if(this != &other)
+	{
+		this->Name = other.GetName();
+		this->Hit = other.GetHitPoints();
+		this->Energy = other.GetEnergyPoints();
+		this->Damage = other.GetDamagePoints();
+	}
 }
 
 ScavTrap::~ScavTrap()

@@ -19,6 +19,25 @@ FragTrap::FragTrap(std::string& name) : ClapTrap(name)
 	SetDamagePoints(30);
 }
 
+FragTrap::FragTrap(const FragTrap &other)
+{
+	std::cout << FRAG_COPY_CONSTRUCTOR << std::endl;
+	*this = other;
+
+}
+
+FragTrap &FragTrap::operator=(const FragTrap &other)
+{
+	std::cout << FRAG_COPY_ASSIGNMENT << std::endl;
+	if(this != &other)
+	{
+		this->Name = other.GetName();
+		this->Hit = other.GetHitPoints();
+		this->Energy = other.GetEnergyPoints();
+		this->Damage = other.GetDamagePoints();
+	}
+}
+
 FragTrap::~FragTrap()
 {
 	std::cout << FRAG_DESTRUCTOR << std::endl;

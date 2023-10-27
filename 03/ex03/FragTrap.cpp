@@ -28,3 +28,22 @@ void FragTrap::highFivesGuys(void)
 {
 		std::cout << "Give me a High Fives ✋!" << std::endl;
 }
+
+FragTrap::FragTrap(const FragTrap &other)
+{
+	std::cout << FRAG_COPY_CONSTRUCTOR << std::endl;
+	*this = other;
+
+}
+
+FragTrap &FragTrap::operator=(const FragTrap &other)
+{
+	std::cout << FRAG_COPY_ASSIGNMENT << std::endl;
+	if(this != &other)
+	{
+		this->Name = other.GetName();
+		this->Hit = other.GetHitPoints();
+		this->Energy = other.GetEnergyPoints();
+		this->Damage = other.GetDamagePoints();
+	}
+}

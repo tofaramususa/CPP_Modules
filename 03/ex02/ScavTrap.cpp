@@ -45,4 +45,22 @@ void ScavTrap::attack(const std::string& target)
 void ScavTrap::guardGate()
 {
 		std::cout << "ScavTrap " << GetName() << " is now in Gate Keeper Mode" << std::endl;
-}	
+}
+
+ScavTrap::ScavTrap(const ScavTrap &other)
+{
+	std::cout << SCAV_COPY_CONSTRUCTOR << std::endl;
+	*this = other;
+}
+
+ScavTrap &ScavTrap::operator=(const ScavTrap &other)
+{
+	std::cout << SCAV_COPY_ASSIGNMENT << std::endl;
+	if(this != &other)
+	{
+		this->Name = other.GetName();
+		this->Hit = other.GetHitPoints();
+		this->Energy = other.GetEnergyPoints();
+		this->Damage = other.GetDamagePoints();
+	}
+}
