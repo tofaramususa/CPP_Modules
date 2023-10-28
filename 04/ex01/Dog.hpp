@@ -7,14 +7,12 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-
 /*  
 Default constructor
 • Copy constructor
 • Copy assignment operator
 • Destructor
 */
-
 
 class Dog : public Animal
 {
@@ -23,12 +21,11 @@ class Dog : public Animal
 	~Dog();
 	Dog(const Dog &other);
 	Dog(std::string type);
-	Dog operator=(const Dog &other);
+	Dog &operator=(const Dog &other);
 	void makeSound() const;
 
 	private:
-	Brain *brain;
+	Brain *mind;
 };
-
 
 #endif

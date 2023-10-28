@@ -3,6 +3,7 @@
 WrongAnimal::WrongAnimal()
 {
 	std::cout << "WrongAnimal Class Default Constructor Called" << std::endl;
+	type = "Default Animal";
 }
 
 WrongAnimal::WrongAnimal(std::string type) : type(type)
@@ -21,7 +22,7 @@ WrongAnimal::WrongAnimal(const WrongAnimal &other)
 	*this = other;
 }
 
-WrongAnimal WrongAnimal::operator=(const WrongAnimal &other)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 {
 	std::cout << " WrongAnimal Copy Assignment Operator Called" << std::endl;
 	if(this != &other)
@@ -34,4 +35,14 @@ WrongAnimal WrongAnimal::operator=(const WrongAnimal &other)
 void WrongAnimal::makeSound() const
 {
 	std::cout << "WrongAnimal Makes Sound!" << std::endl;
+}
+
+void WrongAnimal::setType(std::string value)
+{
+	type = value;
+}
+
+std::string WrongAnimal::getType() const
+{
+	return type;
 }

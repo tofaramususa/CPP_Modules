@@ -17,13 +17,13 @@ Dog::~Dog()
 	std::cout << "Dog Class Destructor Called" << std::endl;
 }
 
-Dog::Dog(const Dog &other)
+Dog::Dog(const Dog &other) : Animal(other)
 {
-	std::cout << "Dog Class Copy Construcot Called" << std::endl;
+	std::cout << "Dog Class Copy Constructor Called" << std::endl;
 	*this = other;
 }
 
-Dog Dog::operator=(const Dog &other)
+Dog &Dog::operator=(const Dog &other)
 {
 	std::cout << " Dog Class Copy Assignment Operator Called" << std::endl;
 	if(this != &other)

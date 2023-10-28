@@ -7,6 +7,7 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
+
 /*  
 Default constructor
 • Copy constructor
@@ -22,11 +23,11 @@ class Cat : public Animal
 	Cat(std::string type);
 	~Cat();
 	Cat(const Cat &other);
-	Cat operator=(const Cat &other);
+	Cat &operator=(const Cat &other);
 	void makeSound() const;
 
 	private:
-	Brain *brain;
+	Brain *mind;
 }; 
 
 #endif
