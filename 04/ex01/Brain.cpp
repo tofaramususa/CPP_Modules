@@ -5,7 +5,7 @@ Brain::Brain()
 	std::cout << "Brain Class Default Constructor Called" << std::endl;
 	for(int i = 0; i < 100; i++)
 	{
-		ideas[i] = "Idea: " + i;
+		ideas[i] = "Idea";
 	}
 }
 
@@ -16,10 +16,10 @@ Brain::Brain(std::string idea)
 	{
 		if(idea.empty())
 		{
-			ideas[i] = "Idea: " + i + ' ' + idea;
+			ideas[i] = "Idea";
 		}
 		else
-			ideas[i] = "Idea: " + i;
+			ideas[i] = "Idea";
 	}
 }
 

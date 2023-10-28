@@ -1,5 +1,5 @@
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef WRONG_CAT_HPP
+#define WRONG_CAT_HPP
 
 
 #include <iostream>
@@ -14,6 +14,7 @@ Default constructor
 • Destructor
 */
 
+
 class WrongCat : public WrongAnimal
 {
 	public:
@@ -21,7 +22,7 @@ class WrongCat : public WrongAnimal
 	WrongCat(std::string type);
 	~WrongCat();
 	WrongCat(const WrongCat &other);
-	WrongCat operator=(const WrongCat &other);
+	WrongCat &operator=(const WrongCat &other);
 }; 
 
 #endif

@@ -33,6 +33,7 @@ Dog &Dog::operator=(const Dog &other)
 	if(this != &other)
 	{
 		this->type = other.type;
+		// this->mind = new mind(other.mind);
 	}
 	return *this;
 }
