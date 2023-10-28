@@ -23,9 +23,9 @@ class Dog : public Animal
 	Dog(std::string type);
 	Dog &operator=(const Dog &other);
 	void makeSound() const;
-
+	Brain *getBrain();
 	private:
-	Brain *mind;
+	Brain *brain;
 };
 
 #endif

@@ -1,30 +1,31 @@
 #include "Dog.hpp"
 
-Dog::Dog()
+Dog::Dog() : Animal()
 {
 	std::cout << "Dog Class Default Constructor Called" << std::endl;
 	this->type = "Dog";
-	mind = new Brain();
+	brain = new Brain();
 }
 
 Dog::Dog(std::string type) : Animal(type)
 {
 	std::cout << "Dog Class Parametized Constructor Called" << std::endl;
 	this->type = "Dog";
-	mind = new Brain();
+	brain = new Brain(type);
 }
 
 Dog::~Dog()
 {
 	std::cout << "Dog Class Destructor Called" << std::endl;
-	if(mind)
-		delete mind;
+	if(brain)
+		delete brain;
 }
 
 Dog::Dog(const Dog &other) : Animal(other)
 {
 	std::cout << "Dog Class Copy Constructor Called" << std::endl;
 	*this = other;
+	this->brain = new Brain(*other.brain); //l need to understand why we calling in both constructor and overload
 }
 
 Dog &Dog::operator=(const Dog &other)
@@ -33,7 +34,7 @@ Dog &Dog::operator=(const Dog &other)
 	if(this != &other)
 	{
 		this->type = other.type;
-		// this->mind = new mind(other.mind);
+		this->brain = new Brain(*other.brain);
 	}
 	return *this;
 }
@@ -41,4 +42,9 @@ Dog &Dog::operator=(const Dog &other)
 void Dog::makeSound() const
 {
 	std::cout << "Dog Makes Sound: Bark! Bark!" << std::endl;
+}
+
+Brain *Dog::getBrain()
+{
+	return brain;
 }

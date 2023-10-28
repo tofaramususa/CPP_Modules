@@ -4,27 +4,28 @@ Cat::Cat()
 {
 	std::cout << "Cat Class Default Constructor Called" << std::endl;
 	this->type = "Cat";
-	mind = new Brain();
+	brain = new Brain();
 }
 
 Cat::Cat(std::string type) : Animal(type)
 {
 	std::cout << "Cat Class Parametized Constructor Called" << std::endl;
 	this->type = "Cat";
-	mind = new Brain();
+	brain = new Brain(type);
 }
 
 Cat::~Cat()
 {
 	std::cout << "Cat Class Destructor Called" << std::endl;
-	if(mind)
-		delete mind;
+	if(brain)
+		delete brain;
 }
 
 Cat::Cat(const Cat &other) : Animal(other)
 {
 	std::cout << "Cat Copy Constructor Called" << std::endl;
 	*this = other;
+	this->brain = new Brain(*other.brain);
 }
 
 Cat &Cat::operator=(const Cat &other)
@@ -33,6 +34,7 @@ Cat &Cat::operator=(const Cat &other)
 	if(this != &other)
 	{
 		this->type = other.type;
+		this->brain = new Brain(*other.brain);
 	}
 	return *this;
 }

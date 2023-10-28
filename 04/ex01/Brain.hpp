@@ -18,7 +18,8 @@ class Brain
 	Brain(std::string type);
 	~Brain();
 	Brain(const Brain &other);
-	Brain operator=(const Brain &other);
+	Brain &operator=(const Brain &other);
+	void printIdeas();
 
 	private:
 	std::string ideas[100];

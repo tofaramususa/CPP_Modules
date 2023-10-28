@@ -6,14 +6,12 @@
 #include <string>
 #include "WrongAnimal.hpp"
 
-
 /*  
 Default constructor
 • Copy constructor
 • Copy assignment operator
 • Destructor
 */
-
 
 class WrongCat : public WrongAnimal
 {

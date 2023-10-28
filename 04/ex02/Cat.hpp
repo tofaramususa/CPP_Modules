@@ -7,14 +7,12 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-
 /*  
 Default constructor
 • Copy constructor
 • Copy assignment operator
 • Destructor
 */
-
 
 class Cat : public Animal
 {
@@ -27,7 +25,7 @@ class Cat : public Animal
 	void makeSound() const;
 
 	private:
-	Brain *mind;
+	Brain *brain;
 }; 
 
 #endif

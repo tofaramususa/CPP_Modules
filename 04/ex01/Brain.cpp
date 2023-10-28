@@ -12,14 +12,9 @@ Brain::Brain()
 Brain::Brain(std::string idea)
 {
 	std::cout << "Brain Class Parametized Constructor Called" << std::endl;
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < 100; ++i)
 	{
-		if(idea.empty())
-		{
-			ideas[i] = "Idea";
-		}
-		else
-			ideas[i] = "Idea";
+			ideas[i] = idea;
 	}
 }
 
@@ -34,7 +29,7 @@ Brain::Brain(const Brain &other)
 	*this = other;
 }
 
-Brain Brain::operator=(const Brain &other)
+Brain &Brain::operator=(const Brain &other)
 {
 	std::cout << " Brain Copy Assignment Operator Called" << std::endl;
 	for(int i = 0; i < 100; i++)
@@ -44,4 +39,11 @@ Brain Brain::operator=(const Brain &other)
 	return *this;
 }
 
-
+void Brain::printIdeas()
+{
+	for(int i = 0; i < 100; i++)
+	{
+		if(!ideas[i].empty())
+			std::cout << i + 1 << ": " << ideas[i] << std::endl;
+	}
+}
