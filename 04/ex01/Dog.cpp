@@ -25,7 +25,6 @@ Dog::Dog(const Dog &other) : Animal(other)
 {
 	std::cout << "Dog Class Copy Constructor Called" << std::endl;
 	*this = other;
-	this->brain = new Brain(*other.brain); //l need to understand why we calling in both constructor and overload
 }
 
 Dog &Dog::operator=(const Dog &other)

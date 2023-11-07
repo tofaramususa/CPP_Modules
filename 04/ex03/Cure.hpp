@@ -5,22 +5,20 @@
 #include <string>
 #include "AMateria.hpp"
 
-class Cube : AMateria
+class Cure : AMateria
 {
 	private:
 	std::string type;
 
 	public:
-	Cube();
-	Cube(std::string const & type);
-	Cube(const Cube &other);
-	Cube &operator=(const Cube &other);
-	virtual ~Cube();
+	Cure();
+	Cure(std::string const & type);
+	Cure(const Cure &other);
+	Cure &operator=(const Cure &other);
+	virtual ~Cure();
 
 	std::string const & getType() const; //Returns the materia type
-
 	AMateria* clone() const;
-	
 	virtual void use(ICharacter& target);
 };
 

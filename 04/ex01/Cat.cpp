@@ -25,7 +25,6 @@ Cat::Cat(const Cat &other) : Animal(other)
 {
 	std::cout << "Cat Copy Constructor Called" << std::endl;
 	*this = other;
-	this->brain = new Brain(*other.brain);
 }
 
 Cat &Cat::operator=(const Cat &other)

@@ -18,9 +18,7 @@ class Ice : public AMateria
 	virtual ~Ice();
 
 	std::string const & getType() const; //Returns the materia type
-
 	AMateria* clone() const;
-	
 	virtual void use(ICharacter& target);
 };
 
