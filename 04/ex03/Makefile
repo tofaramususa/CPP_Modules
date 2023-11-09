@@ -1,6 +1,6 @@
 NAME = Materia
 
-SRCS = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp main.cpp Brain.cpp
+SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude

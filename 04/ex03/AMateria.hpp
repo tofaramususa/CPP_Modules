@@ -10,7 +10,9 @@ Default constructor
 • Copy constructor
 • Copy assignment operator
 • Destructor
-*/
+*/ 
+
+class ICharacter;
 
 class AMateria
 {

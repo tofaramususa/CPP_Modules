@@ -1,12 +1,11 @@
 #include "Cure.hpp"
 
-
-Cure::Cure() : AMateria("cure"), type("cure")
+Cure::Cure() : AMateria("cure")
 {
 	std::cout << "Cure Class default constructor called" << std::endl;
 }
 
-Cure::Cure(std::string const & type) : AMateria(type), type("cure")
+Cure::Cure(std::string const & type) : AMateria(type)
 {
 	std::cout << "Cure Class parameterised constructor called" << std::endl;
 }
@@ -22,12 +21,7 @@ AMateria *Cure::clone() const
 	return new Cure();
 }
 
-std::string const &Cure::getType() const
-{
-	return this->type;
-}
-
-Cure::Cure(const Cure &other)
+Cure::Cure(const Cure &other) : AMateria(other)
 {
 	*this = other;
 }

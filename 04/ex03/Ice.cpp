@@ -1,12 +1,11 @@
 #include "Ice.hpp"
 
-
-Ice::Ice() : AMateria("ice"), type("ice")
+Ice::Ice() : AMateria("ice")
 {
 	std::cout << "Ice Class default constructor called" << std::endl;
 }
 
-Ice::Ice(std::string const & type) : AMateria(type), type("ice")
+Ice::Ice(std::string const & type) : AMateria(type)
 {
 	std::cout << "Ice Class parameterised constructor called" << std::endl;
 }
@@ -22,12 +21,7 @@ AMateria *Ice::clone() const
 	return new Ice();
 }
 
-std::string const &Ice::getType() const
-{
-	return this->type;
-}
-
-Ice::Ice(const Ice &other)
+Ice::Ice(const Ice &other) : AMateria(other)
 {
 	*this = other;
 }
