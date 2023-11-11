@@ -34,11 +34,13 @@ Animal &Animal::operator=(const Animal &other)
 
 std::string Animal::getType() const
 {
+	std::cout << "Animal getType function called" << std::endl;
 	return type;
 }
 
 void Animal::setType(std::string value)
 {
+	std::cout << "Animal setType function called" << std::endl;
 	type = value;
 }
 

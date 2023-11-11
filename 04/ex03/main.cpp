@@ -5,6 +5,7 @@
 #include "ICharacter.hpp"
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
+#include <cstdlib>
 
 int main()
 {
@@ -22,7 +23,12 @@ int main()
 	me->use(1, *bob);
 	for(int i = 0; i < 6; ++i)
 	{
+		me->equip(tmp);
 		
+	}
+	for(int i = 0; i < 6; ++i)
+	{
+		me->unequip(i);
 	}
 	delete bob;
 	delete me;

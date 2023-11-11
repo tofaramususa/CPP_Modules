@@ -9,7 +9,6 @@ Cat::Cat()
 Cat::Cat(std::string type) : Animal(type)
 {
 	std::cout << "Cat Class Parametized Constructor Called" << std::endl;
-	this->type = "Cat";
 }
 
 Cat::~Cat()

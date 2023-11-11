@@ -45,5 +45,6 @@ void Dog::makeSound() const
 
 Brain *Dog::getBrain()
 {
+	std::cout << "Dog getBrain function called" << std::endl;
 	return brain;
 }

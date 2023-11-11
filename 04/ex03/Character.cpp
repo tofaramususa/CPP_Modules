@@ -117,7 +117,6 @@ void Character::use(int idx, ICharacter &target)
 	inventory[idx]->use(target);
 }
 
-
 void Character::storeMateria(AMateria *m)
 {
 	if(oldMateria[oldestMateriaIndex] != NULL)

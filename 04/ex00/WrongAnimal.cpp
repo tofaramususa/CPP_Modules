@@ -39,10 +39,12 @@ void WrongAnimal::makeSound() const
 
 void WrongAnimal::setType(std::string value)
 {
+	std::cout << "WrongAnimal setType function called" << std::endl;
 	type = value;
 }
 
 std::string WrongAnimal::getType() const
 {
+	std::cout << "WrongAnimal getType function called" << std::endl;
 	return type;
 }

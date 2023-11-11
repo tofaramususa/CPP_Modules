@@ -10,7 +10,6 @@ Dog::Dog() : Animal()
 Dog::Dog(std::string type) : Animal(type)
 {
 	std::cout << "Dog Class Parametized Constructor Called" << std::endl;
-	this->type = "Dog";
 	brain = new Brain(type);
 }
 
@@ -45,5 +44,6 @@ void Dog::makeSound() const
 
 Brain *Dog::getBrain()
 {
+	std::cout << "Dog getBrain function called" << std::endl;
 	return brain;
 }

@@ -12,7 +12,7 @@ Cure::Cure(std::string const & type) : AMateria(type)
 
 Cure::~Cure()
 {
-	std::cout << "Cure Class destructor called" << std::endl;	
+	std::cout << "Cure Class destructor called" << std::endl;
 }
 
 AMateria *Cure::clone() const

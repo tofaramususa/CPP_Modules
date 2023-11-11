@@ -9,7 +9,6 @@ Dog::Dog()
 Dog::Dog(std::string type) : Animal(type)
 {
 	std::cout << "Dog Class Parametized Constructor Called" << std::endl;
-	this->type = "Dog";
 }
 
 Dog::~Dog()

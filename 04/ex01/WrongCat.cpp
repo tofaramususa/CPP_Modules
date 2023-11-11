@@ -9,7 +9,6 @@ WrongCat::WrongCat() : WrongAnimal()
 WrongCat::WrongCat(std::string type) : WrongAnimal(type)
 {
 	std::cout << "WrongCat Class Parametized Constructor Called" << std::endl;
-	this->type = "WrongCat";
 }
 
 WrongCat::~WrongCat()
