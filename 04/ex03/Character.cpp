@@ -1,20 +1,28 @@
 #include "Character.hpp"
 
-Character::Character() : name("Default")
+Character::Character() : name("Default"), oldestMateriaIndex(0)
 {
 	std::cout << "Character Default Constructor Called" << std::endl;
 	for (int i = 0; i < 4; ++i)
 	{
 		inventory[i] = NULL;
 	}
+	for (int i = 0; i < 4; ++i)
+	{
+		oldMateria[i] = NULL;
+	}
 }
 
-Character::Character(const std::string &name) : name(name)
+Character::Character(const std::string &name) : name(name), oldestMateriaIndex(0)
 {
 	std::cout << "Character Parameterized Constructor Called" << std::endl;
 	for (int i = 0; i < 4; ++i)
 	{
 		inventory[i] = NULL;
+	}
+	for (int i = 0; i < 4; ++i)
+	{
+		oldMateria[i] = NULL;
 	}
 }
 
@@ -33,6 +41,14 @@ Character::~Character()
 		{
 			delete	inventory[i];
 			inventory[i] = NULL;
+		}
+	}
+	for (int i = 0; i < 4; ++i)
+	{
+		if (oldMateria[i] != NULL)
+		{
+			delete	oldMateria[i];
+			oldMateria[i] = NULL;
 		}
 	}
 }
@@ -78,14 +94,17 @@ void Character::equip(AMateria *m)
 			return ;
 		}
 	}
+	std::cout << "No available slots to equip" << std::endl;
 }
 
 void Character::unequip(int idx)
 {
 	if (idx < 0 || idx > 3 || inventory[idx] == NULL)
 	{
+		std::cout << "No Materia at that index" << std::endl;
 		return ;
 	}
+	storeMateria(inventory[idx]);
 	inventory[idx] = NULL;
 }
 
@@ -96,4 +115,15 @@ void Character::use(int idx, ICharacter &target)
 		return ;
 	}
 	inventory[idx]->use(target);
+}
+
+
+void Character::storeMateria(AMateria *m)
+{
+	if(oldMateria[oldestMateriaIndex] != NULL)
+		delete oldMateria[oldestMateriaIndex];
+	oldMateria[oldestMateriaIndex] = m;
+	oldestMateriaIndex += 1;
+	if (oldestMateriaIndex == 4)
+		oldestMateriaIndex = 0;
 }

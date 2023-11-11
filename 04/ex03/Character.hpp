@@ -18,6 +18,8 @@ class Character : public ICharacter
 	private:
 	std::string name;
 	AMateria *inventory[4];
+	AMateria *oldMateria[4];
+	int oldestMateriaIndex;
 
 	public:
 	Character();
@@ -29,6 +31,7 @@ class Character : public ICharacter
 	void equip(AMateria* m);
 	void unequip(int idx);
 	void use(int idx, ICharacter &target); 
+	void storeMateria(AMateria *m);
 };
 
 #endif

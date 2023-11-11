@@ -20,6 +20,10 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	for(int i = 0; i < 6; ++i)
+	{
+		
+	}
 	delete bob;
 	delete me;
 	delete src;
