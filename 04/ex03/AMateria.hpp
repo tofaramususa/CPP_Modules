@@ -5,12 +5,12 @@
 #include <string>
 #include "ICharacter.hpp"
 
-/*  
+/*
 Default constructor
 • Copy constructor
 • Copy assignment operator
 • Destructor
-*/ 
+*/
 
 class ICharacter;
 

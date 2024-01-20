@@ -7,7 +7,7 @@ Character::Character() : name("Default"), oldestMateriaIndex(0)
 	{
 		inventory[i] = NULL;
 	}
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 1000; ++i)
 	{
 		oldMateria[i] = NULL;
 	}
@@ -20,7 +20,7 @@ Character::Character(const std::string &name) : name(name), oldestMateriaIndex(0
 	{
 		inventory[i] = NULL;
 	}
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 1000; ++i)
 	{
 		oldMateria[i] = NULL;
 	}
@@ -43,7 +43,7 @@ Character::~Character()
 			inventory[i] = NULL;
 		}
 	}
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < 1000; ++i)
 	{
 		if (oldMateria[i] != NULL)
 		{
@@ -119,10 +119,8 @@ void Character::use(int idx, ICharacter &target)
 
 void Character::storeMateria(AMateria *m)
 {
-	if(oldMateria[oldestMateriaIndex] != NULL)
-		delete oldMateria[oldestMateriaIndex];
 	oldMateria[oldestMateriaIndex] = m;
 	oldestMateriaIndex += 1;
-	if (oldestMateriaIndex == 4)
+	if (oldestMateriaIndex == 1000)
 		oldestMateriaIndex = 0;
 }

@@ -54,5 +54,6 @@ class Fixed
 };
 
 std::ostream &operator<<(std::ostream &stream, const Fixed &object);
+void print_boolean(bool value);
 
 #endif

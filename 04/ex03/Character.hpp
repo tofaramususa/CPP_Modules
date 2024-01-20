@@ -18,7 +18,7 @@ class Character : public ICharacter
 	private:
 	std::string name;
 	AMateria *inventory[4];
-	AMateria *oldMateria[4];
+	AMateria *oldMateria[1000];
 	int oldestMateriaIndex;
 
 	public:

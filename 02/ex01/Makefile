@@ -1,6 +1,6 @@
 NAME = Fixed
 
-SRCS = main.cpp Fixed.hpp Fixed.cpp
+SRCS = main.cpp Fixed.cpp
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror

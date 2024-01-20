@@ -18,7 +18,7 @@ Animal::~Animal()
 
 Animal::Animal(const Animal &other)
 {
-	std::cout << "Animal Copy Construcot Called" << std::endl;
+	std::cout << "Animal Copy Constructor Called" << std::endl;
 	*this = other;
 }
 

@@ -1,6 +1,6 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : value(0) 
+Fixed::Fixed() : RawBits(0) 
 {
 	std::cout << CONSTRUCTOR << std::endl; 
 
@@ -8,8 +8,8 @@ Fixed::Fixed() : value(0)
 
 Fixed::Fixed(const Fixed &other) 
 {
-	*this = other;
 	std::cout << COPY_CONSTRUCTOR << std::endl; 
+	*this = other;
 }
 
 Fixed::~Fixed()
@@ -21,19 +21,19 @@ Fixed::~Fixed()
 int Fixed::getRawBits(void) const
 {
 	std::cout << RAW_BITS << std::endl; 
-	return value;
+	return RawBits;
 }
 
 void Fixed::setRawBits(const int raw)
 {
-	value = raw;
+	RawBits = raw;
 }
 
 Fixed &Fixed::operator=(const Fixed &other)
 {
 	if(this == &other)
 		return *this;
-	value = other.value;
+	RawBits = other.RawBits;
 	std::cout << COPY_ASSIGNMENT << std::endl; 
 	return *this;
 }

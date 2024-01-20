@@ -21,11 +21,7 @@ int main()
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
-	for(int i = 0; i < 6; ++i)
-	{
-		me->equip(tmp);
-		
-	}
+	AMateria *temp2 = new Ice();
 	for(int i = 0; i < 6; ++i)
 	{
 		me->unequip(i);
@@ -33,5 +29,6 @@ int main()
 	delete bob;
 	delete me;
 	delete src;
+	delete temp2;
 	return 0;
 }

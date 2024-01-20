@@ -174,3 +174,11 @@ std::ostream &operator<<(std::ostream &stream, Fixed const &object)
 	stream << object.toFloat();
 	return stream;
 }
+
+void print_boolean(bool value)
+{
+	if(value)
+		std::cout << "TRUE" << std::endl;
+	else
+		std::cout << "FALSE" << std::endl;
+}
