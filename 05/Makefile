@@ -1,0 +1,26 @@
+NAME = Tests
+
+SRCS = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp main.cpp
+
+CXX = c++
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude
+
+OBJ = $(SRCS:.cpp=.o)
+
+all: $(NAME)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
+
+clean: 
+	rm -rf ${OBJ}
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
