@@ -1,6 +1,6 @@
-NAME = Tests
+NAME = Bureaucrat
 
-SRCS = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp main.cpp
+SRCS = main.cpp Bureaucrat.cpp
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude
