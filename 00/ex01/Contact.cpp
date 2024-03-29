@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tofaramususa <tofaramususa@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 18:47:42 by tmususa           #+#    #+#             */
-/*   Updated: 2023/10/11 13:29:31 by marvin           ###   ########.fr       */
+/*   Updated: 2024/03/25 22:33:53 by tofaramusus      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-Contact::Contact() : Empty(true) {}
+Contact::Contact() : Empty(true)
+{
+}
 
 Contact::Contact(bool Empty) : Empty(Empty)
 {
@@ -26,7 +28,7 @@ Contact::Contact(bool Empty) : Empty(Empty)
 
 bool Contact::isEmpty()
 {
-	return Empty;
+	return (Empty);
 }
 
 void Contact::displayContact()
@@ -40,23 +42,23 @@ void Contact::displayContact()
 
 std::string Contact::getFirstName()
 {
-	return firstname;
+	return (firstname);
 }
 std::string Contact::getLastName()
 {
-	return lastname;
+	return (lastname);
 }
 std::string Contact::getNickname()
 {
-	return nickname;
+	return (nickname);
 }
 std::string Contact::getPhoneNumber()
 {
-	return phoneNumber;
+	return (phoneNumber);
 }
 std::string Contact::getSecret()
 {
-	return secret;
+	return (secret);
 }
 void Contact::setFirstName(std::string value)
 {
