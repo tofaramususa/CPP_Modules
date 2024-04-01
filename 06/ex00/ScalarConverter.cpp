@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-void ScalarConverter::convert(std::string const s)
-{
-	std::cout << "hello: " << s << std::endl;
-}
+// void ScalarConverter::convert(std::string const s)
+// {
+// 	if(static_cast<char>)
+// }
