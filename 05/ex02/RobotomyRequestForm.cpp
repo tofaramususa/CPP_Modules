@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:29:56 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 19:49:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/06 21:29:46 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include "RobotomyRequestForm.hpp"
 
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Shrubbery Form",target, 25, 5) 
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target) : AForm("Robotomy Form",target, 72, 45) 
 {
 	//print
 }
 
 //default constructor
-RobotomyRequestForm::RobotomyRequestForm() : AForm("Shrubbery Form", "default", 25, 5)
+RobotomyRequestForm::RobotomyRequestForm() :  AForm("Robotomy Form", "default", 72, 45) 
 {
 	//print
 }

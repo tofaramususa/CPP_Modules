@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:10:15 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 13:56:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/06 21:15:33 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ class Bureaucrat
 	class GradeTooLowException : public std::exception 
 	{
 		public:
-			const char *what() const throw();
+			const char *what() const throw(); //what is this part again?
 	};
+	
 	const std::string name;
 	int grade;
 	

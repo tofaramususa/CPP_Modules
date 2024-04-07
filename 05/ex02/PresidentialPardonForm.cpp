@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:16:05 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 19:45:14 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/06 21:28:53 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include "PresidentialPardonForm.hpp"
 
 //name constructor
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("Shrubbery Form",target, 25, 5) 
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("Presidential Form",target, 25, 5) 
 {
 	//print
 }
 
 //default constructor
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Shrubbery Form", "default", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Form", "default", 25, 5)
 {
 	//print
 }
