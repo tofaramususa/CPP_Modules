@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:10:10 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 16:51:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/07 20:06:35 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int main()
 {
     try 
 	{
-        Bureaucrat bureaucrat("John", 13);
-        Form form("Tax Form", 50, 75);
-        bureaucrat.signForm(form);
+        Bureaucrat Person("Tofara", 13);
+        Form form("Sales", 50, 75);
+        Person.signForm(form);
         std::cout << form << std::endl;
-        Bureaucrat lowGradeBureaucrat("Jane", 120);
-        lowGradeBureaucrat.signForm(form);
+        Bureaucrat otherPerson("John", 300);
+        otherPerson.signForm(form);
         std::cout << form << std::endl;
     } 
 	catch (const std::exception& e) 
@@ -32,5 +32,3 @@ int main()
     }
     return 0;
 }
-
-

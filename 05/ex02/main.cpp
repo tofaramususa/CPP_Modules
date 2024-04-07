@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:10:10 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 20:07:54 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/07 20:45:53 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,23 @@ int main()
 {
     try {
         // Create bureaucrats
-        Bureaucrat john("John", 149); // Grade 10
-        Bureaucrat alice("Alice", 130); // Grade 5
+        Bureaucrat Tofara("Tofara", 1);
+        Bureaucrat Rebecca("Alice", 12);
 
         // Create forms
         ShrubberyCreationForm homeForm("home");
         RobotomyRequestForm robotomyForm("target");
         PresidentialPardonForm pardonForm("Zaphod Beeblebrox");
 
+		//sign Forms
+		Tofara.signForm(homeForm);
+		Rebecca.signForm(robotomyForm);
+		Tofara.signForm(pardonForm);
+
         // Execute forms
-        john.executeForm(homeForm);
-        alice.executeForm(robotomyForm);
-        john.executeForm(pardonForm);
+        Tofara.executeForm(homeForm);
+        Rebecca.executeForm(robotomyForm);
+        Tofara.executeForm(pardonForm);
 
     } 
 	catch (const std::exception& e) 

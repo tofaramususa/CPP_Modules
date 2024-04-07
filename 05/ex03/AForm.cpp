@@ -3,30 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 15:49:51 by marvin            #+#    #+#             */
-/*   Updated: 2024/03/14 20:01:05 by marvin           ###   ########.fr       */
+/*   Updated: 2024/04/07 20:39:24 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-AForm::AForm() : name("Bro"), target("default"),signedStatus(false), signGrade(1), execGrade(1) 
+AForm::AForm() : name("Bro"), target("default"),signedStatus(false), signGrade(1), excGrade(1) 
 {
 }
 
-AForm::AForm(const std::string& name, const std::string& target, int signGrade, int execGrade) : name(name), target(target), signedStatus(false), signGrade(signGrade), execGrade(execGrade) 
+AForm::AForm(const std::string& name, const std::string& target, int signGrade, int excGrade) : name(name), target(target), signedStatus(false), signGrade(signGrade), excGrade(excGrade) 
 {
-    if (signGrade < MAX || execGrade < MAX)
+    if (signGrade < MAX || excGrade < MAX)
         throw GradeTooHighException();
-    else if (signGrade > MIN || execGrade > MIN)
+    else if (signGrade > MIN || excGrade > MIN)
         throw GradeTooLowException();
 	//add message to print functions std::cout
 }
 
-AForm::AForm(const AForm& other) :  name(other.name), signedStatus(other.signedStatus), signGrade(other.signGrade), execGrade(other.execGrade)
+AForm::AForm(const AForm& other) :  name(other.name), signedStatus(other.signedStatus), signGrade(other.signGrade), excGrade(other.excGrade)
 {
 }
 
@@ -61,9 +61,9 @@ int AForm::getSignGrade() const
     return signGrade;
 }
 
-int AForm::getExecGrade() const 
+int AForm::getexcGrade() const 
 {
-    return execGrade;
+    return excGrade;
 }
 
 void AForm::beSigned(Bureaucrat const & bureaucrat) 
@@ -91,7 +91,7 @@ const char* AForm::FormNotSignedException::what() const throw()
 
 std::ostream& operator<<(std::ostream& os, const AForm& Aform) 
 {
-    os << "AForm: " << Aform.getName() << ", Sign Grade: " << Aform.getSignGrade() << ", Exec Grade: " << Aform.getExecGrade();
+    os << "AForm: " << Aform.getName() << ", Sign Grade: " << Aform.getSignGrade() << ", Exec Grade: " << Aform.getexcGrade();
     if (Aform.isSigned()) 
 	{
         os << ", Signed: Yes";
@@ -108,10 +108,8 @@ void AForm::isExecuted(const Bureaucrat& Bureaucrat) const
 		std::cout << Bureaucrat.getName() << " can't execute " << getName() << std::endl;
 		throw AForm::FormNotSignedException();
 	}
-	if (Bureaucrat.getGrade() > this->execGrade) {
+	if (Bureaucrat.getGrade() > this->excGrade) {
 		std::cout << Bureaucrat.getName() << " can't execute " << getName() << std::endl;
 		throw AForm::GradeTooLowException();
 	}
-	std::cout << Bureaucrat.getName() << " executed " << getName() << std::endl;
-	this->execute(Bureaucrat);
 }

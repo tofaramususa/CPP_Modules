@@ -6,33 +6,23 @@
 /*   By: tmususa <tmususa@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:16:05 by marvin            #+#    #+#             */
-/*   Updated: 2024/04/06 21:28:53 by tmususa          ###   ########.fr       */
+/*   Updated: 2024/04/07 20:40:15 by tmususa          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-// PresidentialPardonForm.cpp
 #include "PresidentialPardonForm.hpp"
 
-//name constructor
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("Presidential Form",target, 25, 5) 
-{
-	//print
-}
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("Presidential Form",target, 25, 5)  { }
 
-//default constructor
-PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Form", "default", 25, 5)
-{
-	//print
-}
+PresidentialPardonForm::PresidentialPardonForm() : AForm("Presidential Form", "default", 25, 5) { }
 
-//copy constructor
+
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other) 
 {
 	*this = other;
 }
 
-//assignment operator
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
     if (this != &other) 
 	{
@@ -41,24 +31,17 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
     return *this;
 }
 
-//destructor
-PresidentialPardonForm::~PresidentialPardonForm() 
-{
-	
-}
+PresidentialPardonForm::~PresidentialPardonForm() {}
 
 void PresidentialPardonForm::execute(const Bureaucrat& executor) const 
 {
-	if (!isSigned()) 
+	try
 	{
-		throw FormNotSignedException();
-	}
-	else if (this->getSignGrade() < executor.getGrade()) 
-	{
-		std::cout << "Form  cannot be executed because the rank is too low" << std::endl;
-		throw GradeTooLowException();
-	}
-	else
+		this->isExecuted(executor);
 		std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+	}
+	catch (std::exception& e) 
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
-
