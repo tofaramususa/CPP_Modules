@@ -6,7 +6,9 @@
 class ScalarConverter
 {
   public:
-	static void convert(std::string const s);
+	static void convert(std::string const value);
+	private:
+		ScalarConverter();
 };
 
 #endif
