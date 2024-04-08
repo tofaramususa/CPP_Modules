@@ -3,18 +3,25 @@
 
 #include <iostream>
 
-template<typename T, typename U>
-void iter(T *a, std::size_t size, U f)
+template<typename T, typename Func>
+void iter(T *array, std::size_t size, Func f)
 {
-	if(!a || !size || !f)
+	if(!array || !size || !f)
 	{
 		std::cout << "Invalid Argument" << std::endl;
 		return ;
 	}
 	for (std::size_t i = 0; i < size; ++i)
 	{
-		f(a[i]);
+		f(array[i]);
 	}
+}
+
+//test template function
+template <typename T>
+void printItem(T value)
+{
+	std::cout << value << std::endl;
 }
 
 #endif

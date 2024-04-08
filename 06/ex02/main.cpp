@@ -81,7 +81,6 @@ void	identify(Base &p)
 
 int main() 
 {
-
     // Generate an instance and identify its type
     Base* objPtr = generate();
     identify(objPtr);
