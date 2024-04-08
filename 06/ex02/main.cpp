@@ -2,25 +2,24 @@
 #include "B.hpp"
 #include "Base.hpp"
 #include "C.hpp"
-#include "methods.cpp"
 #include <cstdlib>
 #include <iostream>
 
 Base	*generate(void)
 {
-	srand(time(NULL));  // generating a random value
+	srand(time(NULL));
 	int i = rand() % 3; // rand of 3 numbers
 	switch (i)
 	{
 	case 0:
 		std::cout << "A generated" << std::endl;
-		return (new A);
+		return (new A());
 	case 1:
 		std::cout << "B generated" << std::endl;
-		return (new B);
+		return (new B());
 	case 2:
 		std::cout << "C generated" << std::endl;
-		return (new C);
+		return (new C());
 	default:
 		std::cout << "Could not generate new class" << std::endl;
 		return (NULL);
@@ -52,8 +51,9 @@ void	identify(Base &p)
 		(void)a;
 		return ;
 	}
-	catch (...)
+	catch (std::exception &e)
 	{
+		std::cout << "A Cast failed" << std::endl;
 	}
 	try
 	{
@@ -62,8 +62,9 @@ void	identify(Base &p)
 		(void)b;
 		return ;
 	}
-	catch (...)
+	catch (std::exception &e)
 	{
+		std::cout << "B Cast failed" << std::endl;
 	}
 	try
 	{
@@ -72,12 +73,19 @@ void	identify(Base &p)
 		(void)c;
 		return ;
 	}
-	catch (...)
+	catch (std::exception &e)
 	{
+		std::cout << "C Cast failed" << std::endl;
 	}
 }
 
-int main()
+int main() 
 {
 
+    // Generate an instance and identify its type
+    Base* objPtr = generate();
+    identify(objPtr);
+	identify(*objPtr);
+    delete objPtr;
+    return 0;
 }
