@@ -31,7 +31,9 @@ int Span::shortestSpan()
 	}
 	std::vector<int> sortedIntegers = integers;
     std::sort(sortedIntegers.begin(), sortedIntegers.end());
-	return(std::abs(*(integers.begin() + 1) - *integers.begin()));
+	std::vector<int> differences(sortedIntegers.size() - 1);
+	std::adjacent_difference(sortedIntegers.begin(), sortedIntegers.end(), differences.begin());
+	return(*std::min_element(differences.begin(), differences.end()));
 }
 
 int Span::longestSpan()
