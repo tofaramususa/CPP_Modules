@@ -6,13 +6,13 @@
 #include <iostream>
 #include <iterator>
 
-template <typename T> //change this to have and take optional container type
+template <typename T>
 class MutantStack : public std::stack<T>
 {
 	public:
 	//Canonical Form here
-	MutantStack(){std::stack<T>::c = std::deque<T>();}; //default constructor
-	MutantStack(const MutantStack& other) : std::stack<T>(other) {}; //copy constructor
+	MutantStack(){std::stack<T>::c = std::deque<T>();};
+	MutantStack(const MutantStack& other) : std::stack<T>(other) {};
 	MutantStack &operator=(MutantStack &other)
 	{
 		if(this != &other)
@@ -20,8 +20,8 @@ class MutantStack : public std::stack<T>
 			this->c = other.c;
 		}
 			return *this;
-	}//copy assignment
-	~MutantStack(){} //destructor
+	}
+	~MutantStack(){}
 
 	//iterators
 	typedef typename std::stack<T>::container_type::iterator iterator;
@@ -40,5 +40,4 @@ class MutantStack : public std::stack<T>
 	const_reverse_iterator rbegin() const { return( std::stack<T>::c.rbegin());  };
 	const_reverse_iterator rend() const{  return(std::stack<T>::c.rend());  };
 };
-
 #endif
