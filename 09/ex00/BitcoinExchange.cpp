@@ -32,7 +32,7 @@ void BitcoinExchange::populateExchangeDatabase()
 		if(data.is_open())
 		{
 			std::getline(data, line);
-			//checkheader 
+			checkHeader(line);
 			while(std::getline(data, line))
 			{
 				line = removeSpaces(line);
@@ -63,7 +63,7 @@ void BitcoinExchange::performSearch(std::string InputFile)
 		if(data.is_open())
 		{
 			std::getline(data, line);
-			//checkheader 
+			checkHeader(line);
 			while(std::getline(data, line))
 			{
 				line = removeSpaces(line);
@@ -85,6 +85,29 @@ void BitcoinExchange::performSearch(std::string InputFile)
 	}
 }
 
+
+void BitcoinExchange::validateInputLine(std::vector<std::string> strings)
+{
+	std::tm fullDate;
+	double rate;
+
+	if(strings.size() == 2)
+	{
+		//check the date if its proper
+		if(std::sscanf(strings[0].c_str(),"%4d-%2d-%2d",&fullDate.tm_year, &fullDate.tm_mon, &fullDate.tm_mday) == 3 && isValidValue(strings[1]))
+		{
+			if(fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 && fullDate.tm_mday < 32) 
+			{
+				std::map<int, double>::iterator retrieveDate = exchangeRateDB.lower_bound(dateToInt(fullDate));
+				std::cout << retrieveDate->second * std::atoi(strings[1].c_str()) << std::endl;
+			}	
+		}
+    }
+	else
+	{
+		// throw error
+	}
+}
 //overall parseline
 void BitcoinExchange::parseLine(std::string line, char delimiter, bool dataCSV) //add to map if
 {
@@ -98,12 +121,12 @@ void BitcoinExchange::parseLine(std::string line, char delimiter, bool dataCSV) 
 	if(dataCSV)
 		this->addLineToDatabase(strings);
 	else
-		validataInputline(strings); //retrieve and printvalue else throw an error and return
+		this->validateInputLine(strings); //retrieve and printvalue else throw an error and return
 		//then add to map and return
 	//else search for for the data in data and print accordingly 
 }
 
-bool isValidValue(std::string &value)
+bool BitcoinExchange::isValidValue(std::string &value)
 {
 	char *endPtr;
 	double floatValue;
@@ -129,32 +152,18 @@ void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings)
 	if(strings.size() == 2)
 	{
 		//check the date if its proper
-		if(std::sscanf(strings[0].c_str(),"%4d-%2d-%2d",&fullDate.tm_year, &fullDate.tm_mon, &fullDate.tm_mday) != 3)
+		if(std::sscanf(strings[0].c_str(),"%4d-%2d-%2d",&fullDate.tm_year, &fullDate.tm_mon, &fullDate.tm_mday) == 3 && isValidValue(strings[1]))
 		{
-			if(fullDate.tm_mon < 0 || fullDate.tm_mon > 11 || fullDate.tm_mday < 1 || fullDate.tm_mday > 31) 
+			if(fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 && fullDate.tm_mday < 32) 
 			{
-				//throw error
-				//return
-
-			}
+				this->exchangeRateDB.insert(std::make_pair(dateToInt(fullDate), std::strtod(strings[1].c_str(), NULL)));
+			}	
 		}
-		if(!isValidValue(strings[1]))
-		{
-			//throw error
-			//return
-		}
-		this->exchangeRateDB.insert(std::make_pair(fullDate, std::strtod(strings[1].c_str(), NULL)));
     }
-		//check the value if its
 	else
 	{
 		// throw error
 	}
-}
-
-void BitcoinExchange::retrieveRate(std::string date)
-{
-	//if the date is not between the minimum and maximum date then return "not in range error"
 }
 
 std::string removeSpaces(std::string line)
@@ -164,7 +173,7 @@ std::string removeSpaces(std::string line)
 }
 
 //use the same function for both
-void checkHeader(std::string line, bool dataCSV)
+void checkHeader(std::string line)
 {
 	// if(dataCSV)
 	// 	//check that specific header or throw error
@@ -172,4 +181,13 @@ void checkHeader(std::string line, bool dataCSV)
 	// {
 	// 	// check header for specific input file
 	// }
+}
+
+int BitcoinExchange::dateToInt(const std::tm &date)
+{
+	int year = date.tm_year + 1900;
+	int month = date.tm_mon + 1;
+	int day = date.tm_mday;
+
+	return year * 10000 + month * 100 + day;
 }

@@ -22,16 +22,17 @@ class BitcoinExchange
 		BitcoinExchange();
 		void populateExchangeDatabase();
 		void performSearch(std::string inputFile);
-		void validateLine(std::string line);
-		void retrieveRate(std::string date);
+		bool isValidValue(std::string &value);
+		double retrieveRate(int fullDate);
 		void addLineToDatabase(std::vector<std::string> strings);
-		void validateInputValue(std::string value);
+		void validateInputLine(std::vector<std::string> strings);
 		void parseLine(std::string line, char delimiter, bool dataCSV);
 		std::string removeSpaces(std::string line);
+		int dateToInt(const std::tm &date);
 
-		std::map<std::tm, double> exchangeRateDB; //this will store the exchangeRates
-		std::string inputFile
-};	
+		std::map<int, double> exchangeRateDB; //this will store the exchangeRates
+		std::string inputFile;
+};
 
 //override a stream that outputs the values
 // 2011-01-03 => 3 = 0.9
