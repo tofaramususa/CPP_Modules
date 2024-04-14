@@ -13,7 +13,7 @@ int main()
     
     // Print the elements in the stack
     std::cout << "Elements in the stack:" << std::endl;
-    for (MutantStack<int>::const_iterator it = mstack.begin(); it != mstack.end(); ++it) {
+    for (MutantStack<int>::iterator it = mstack.begin(); it != mstack.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
@@ -22,8 +22,9 @@ int main()
     std::cout << "Top element: " << mstack.top() << std::endl;
     
     // Pop elements from the stack
-    std::cout << "Popping elements from the stack:" << std::endl;
-    while (!mstack.empty()) {
+    std::cout << "Popping elements from the stack!" << std::endl;
+    while (!mstack.empty()) 
+	{
         std::cout << mstack.top() << " ";
         mstack.pop();
     }
@@ -38,8 +39,9 @@ int main()
     }
     
     // Push elements onto the stack again
-    std::cout << "Pushing elements onto the stack again:" << std::endl;
-    for (int i = 5; i >= 1; --i) {
+    std::cout << "Pushing elements onto the stack again!" << std::endl;
+    for (int i = 1; i < 6; i++) 
+	{
         mstack.push(i * 5);
     }
     
@@ -53,16 +55,16 @@ int main()
     // Test copy constructor
     MutantStack<int> mstack_copy = mstack;
     std::cout << "Elements in copied stack:" << std::endl;
-    for (MutantStack<int>::const_iterator it = mstack_copy.begin(); it != mstack_copy.end(); ++it) {
+    for (MutantStack<int>::iterator it = mstack_copy.begin(); it != mstack_copy.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-    
+
     // Test assignment operator
     MutantStack<int> mstack_assigned;
     mstack_assigned = mstack;
     std::cout << "Elements in assigned stack:" << std::endl;
-    for (MutantStack<int>::const_iterator it = mstack_assigned.begin(); it != mstack_assigned.end(); ++it) {
+    for (MutantStack<int>::iterator it = mstack_assigned.begin(); it != mstack_assigned.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;

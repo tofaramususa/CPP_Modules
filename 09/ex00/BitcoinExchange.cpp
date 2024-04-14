@@ -21,14 +21,14 @@ BitcoinExchange::BitcoinExchange(std::string inputData) : inputFile(inputData) {
 }
 
 void BitcoinExchange::populateExchangeDatabase() {
-  // readfile, and also error handling here
   std::string line;
   std::ifstream data("data.csv");
   try {
     if (data.is_open()) {
-      std::getline(data, line);
+      std::getline(data, line); //check the header here
       this->checkHeader(line, true);
-      while (std::getline(data, line)) {
+      while (std::getline(data, line))
+	  {
         parseLine(line, ',', true);
         // here is were we add line to our map function split on the comma
       }
@@ -132,19 +132,17 @@ void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings) {
   // we need a time struct
   std::tm fullDate;
 
-  if (strings.size() == 2) {
-    // check the date if its proper
-    if (std::sscanf(strings[0].c_str(), "%4d-%2d-%2d", &fullDate.tm_year,
-                    &fullDate.tm_mon, &fullDate.tm_mday) == 3 &&
-        isValidValue(strings[1])) {
+  if (strings.size() == 2) 
+  {
+    if (std::sscanf(strings[0].c_str(), "%4d-%2d-%2d", &fullDate.tm_year, &fullDate.tm_mon, &fullDate.tm_mday) == 3 && isValidValue(strings[1])) 
+		{
       if (fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 &&
-          fullDate.tm_mday < 32) {
-        this->exchangeRateDB.insert(std::make_pair(
-            dateToInt(fullDate), std::strtod(strings[1].c_str(), NULL)));
+          fullDate.tm_mday < 32) 
+		  {
+        this->exchangeRateDB.insert(std::make_pair(dateToInt(fullDate), std::strtod(strings[1].c_str(), NULL)));
       }
     }
   } else {
-    // throw erro
     std::cout << "failed 3" << std::endl;
   }
 }
@@ -175,7 +173,8 @@ void BitcoinExchange::checkHeader(std::string line, bool dataCSV) {
   }
   // check that specific header or throw error
   else {
-    while (getline(lineString, token, '|')) {
+    while (getline(lineString, token, '|'))
+	{
       strings.push_back(token);
     }
     if (strings.size() != 2 || strings[0] != "date" || strings[1] != "value") {

@@ -13,14 +13,14 @@ int main() {
     try {
        std::vector<int>::iterator result;
 	    result = easyfind(vec, 3);
-        std::cout << "Value found at index: " << std::distance(vec.begin(), result) << std::endl;
+        std::cout << "Value found: " << *result << std::endl;
     } catch (const std::out_of_range& e) 
 	{
         std::cerr << "Error: " << e.what() << std::endl;
     }
     try {
         std::vector<int>::iterator result = easyfind(vec, 6);
-        std::cout << "Value found at index: " << std::distance(vec.begin(), result) << std::endl;
+        std::cout << "Value found: " << *result << std::endl;
     } catch (const std::out_of_range& e) 
 	{
         std::cerr << "Error: " << e.what() << std::endl;

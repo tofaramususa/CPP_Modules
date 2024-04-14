@@ -1,15 +1,17 @@
 #ifndef SPAN_H
 #define SPAN_H
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <numeric>
+#include <ctime>
 
 class Span
 {
 	private:
 		Span();
-		std::vector<int> integers;
+		std::vector<unsigned int> integers;
 		unsigned int N;
 
 	public:
@@ -20,6 +22,7 @@ class Span
 		void addNumber(unsigned int i);
 		int shortestSpan();
 		int longestSpan();
+		void addRange(std::vector<unsigned int>::iterator start, std::vector<unsigned int>::iterator end);
 		//then add some kind of range iterators function here
 };
 

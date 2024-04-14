@@ -1,30 +1,54 @@
+#include "Array.hpp"
 #include <iostream>
-#include "Array.hpp"
 
-#include "Array.hpp"
+#define MAX_VAL 1200
 
-int main() {
-    try {
-        // Test default constructor
-        Array<int> arr1;
-        std::cout << "arr1 size: " << arr1.size() << std::endl;
+int	main(int, char **)
+{
+	Array<int> numbers(MAX_VAL);
+	int *mirror = new int[MAX_VAL];
+	srand(time(NULL));
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		int value = rand();
+		numbers[i] = value;
+		mirror[i] = value;
+	}
+	// SCOPE
+	{
+		Array<int> tmp = numbers;
+		Array<int> test(tmp);
+	}
 
-        // Test constructor with size parameter
-        Array<int> arr2(5);
-        std::cout << "arr2 size: " << arr2.size() << std::endl;
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		if (mirror[i] != numbers[i])
+		{
+			std::cerr << "didn't save the same value!!" << std::endl;
+			return (1);
+		}
+	}
+	try
+	{
+		numbers[-2] = 0;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	try
+	{
+		numbers[MAX_VAL - 1] = 0;
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
-        // Test copy constructor
-        Array<int> arr3 = arr2;
-        std::cout << "arr3 size: " << arr3.size() << std::endl;
-		//Test assignment operator
-		arr1 = arr2;
-        std::cout << "arr1 size: " << arr1.size() << std::endl;
-        // Test element access
-        std::cout << "Element at index 2 in arr2: " << arr2[2] << std::endl;
-        // Trying to access out of bounds index
-        std::cout << "Element at index 10 in arr2: " << arr2[10] << std::endl;
-    } catch (const Array<int>::invalidIndexException& e) {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-    return 0;
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		numbers[i] = rand();
+	}
+	delete[] mirror; //
+	return (0);
 }

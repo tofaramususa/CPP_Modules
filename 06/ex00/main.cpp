@@ -8,18 +8,11 @@ int	main(int argc, char **argv)
 		{
 			ScalarConverter::convert(argv[1]);
 		}
-		catch(const std::exception& e)
+		catch (const std::exception &e)
 		{
 			std::cerr << e.what() << '\n';
 		}
-		return(0);
+		return (0);
 	}
-	ScalarConverter::convert("\n");
-	std::cout << std::endl;
-    ScalarConverter::convert("3.14");
-	std::cout << std::endl;
-    ScalarConverter::convert("-42.42");
-	std::cout << std::endl;
-    ScalarConverter::convert("hello");
-	return 1;
+	return (1);
 }

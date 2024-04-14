@@ -1,24 +1,41 @@
 #include "iter.hpp"
+#include <iostream>
 
-int main() 
+class Awesome
 {
-    // Test with an array of integers
-    int intArray[] = {1, 2, 3, 4, 5};
-    std::cout << "Integer array elements: " << std::endl;
-    iter(intArray, 5, printItem<int>);
-    std::cout << std::endl;
+  public:
+	Awesome(void) : _n(42)
+	{
+		return ;
+	}
+	int get(void) const
+	{
+		return (this->_n);
+	}
 
-    // Test with an array of doubles
-    double doubleArray[] = {1.1, 2.2, 3.3, 4.4, 5.5};
-    std::cout << "Double array elements: " << std::endl;
-    iter(doubleArray, 5, printItem<double>);
-    std::cout << std::endl;
+  private:
+	int _n;
+};
 
-    // Test with an array of strings
-    std::string stringArray[] = {"apple", "banana", "orange"};
-    std::cout << "String array elements: " << std::endl;
-    iter(stringArray, 3, printItem<std::string>);
-    std::cout << std::endl;
+std::ostream &operator<<(std::ostream &o, Awesome const &rhs)
+{
+	o << rhs.get();
+	return (o);
+}
 
-    return 0;
+template <typename T> void print(T &x)
+{
+	std::cout << x << std::endl;
+	return ;
+}
+
+int	main(void)
+{
+	int tab[] = {0, 1, 2, 3, 4};
+	Awesome tab2[5];
+
+	iter(tab, 5, print<const int>);
+	iter(tab2, 5, print<Awesome>);
+
+	return (0);
 }

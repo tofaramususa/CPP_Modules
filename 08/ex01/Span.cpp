@@ -13,8 +13,8 @@ Span &Span::operator=(const Span &other)
     if (this != &other) 
 	{
         N = other.N;
-        integers.clear();
-        integers.reserve(other.integers.size());
+        this->integers.clear();
+        this->integers.reserve(other.integers.size());
         std::copy(other.integers.begin(), other.integers.end(), std::back_inserter(integers));
 	}
 	return(*this);
@@ -29,11 +29,11 @@ int Span::shortestSpan()
 	{
 		throw std::logic_error("Insufficient data to calculate span");
 	}
-	std::vector<int> sortedIntegers = integers;
+	std::vector<unsigned int> sortedIntegers = integers;
     std::sort(sortedIntegers.begin(), sortedIntegers.end());
-	std::vector<int> differences(sortedIntegers.size() - 1);
-	std::adjacent_difference(sortedIntegers.begin(), sortedIntegers.end(), differences.begin());
-	return(*std::min_element(differences.begin(), differences.end()));
+	std::vector<unsigned int> differencesArray(sortedIntegers.size());
+	std::adjacent_difference(sortedIntegers.begin(), sortedIntegers.end(), differencesArray.begin());
+	return(*std::min_element(differencesArray.begin(), differencesArray.end()));
 }
 
 int Span::longestSpan()
@@ -52,4 +52,15 @@ void Span::addNumber(unsigned int i)
 		throw std::out_of_range("Span is full");
 	}
 	integers.push_back(i);
+}
+
+void Span::addRange(std::vector<unsigned int>::iterator start, std::vector<unsigned int>::iterator end)
+{
+	unsigned int lengthToAdd = std::distance(start, end);
+	if((this->integers.size() + lengthToAdd) > N)
+	{
+		throw std::out_of_range("The Range goes out of the maximum integers - N");
+	
+	}
+	integers.insert(integers.end(), start, end);
 }
