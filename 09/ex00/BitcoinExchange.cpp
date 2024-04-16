@@ -1,11 +1,4 @@
 #include "BitcoinExchange.hpp"
-#include <cctype>
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <exception>
-#include <string>
-#include <sys/signal.h>
 
 // BitcoinExchange::BitcoinExchange() {}                       // default
 // BitcoinExchange::BitcoinExchange(BitcoinExchange &other) {} // copy
@@ -40,7 +33,7 @@ void BitcoinExchange::populateExchangeDatabase() {
   } catch (std::exception &e) {
     if (data.is_open())
       data.close();
-    std::cout << "failed data.csv file" << std::endl;
+    std::cout << e.what() << std::endl;
   }
 }
 
@@ -59,7 +52,7 @@ void BitcoinExchange::performSearch(std::string InputFile) {
   } catch (std::exception &e) {
     if (data.is_open())
       data.close();
-    std::cout << "Failed inputFile" << std::endl;
+    std::cout << e.what() << std::endl;
   }
 }
 
@@ -79,6 +72,8 @@ bool BitcoinExchange::validateInputLine(std::vector<std::string> strings) {
       return (true);
     }
   }
+  std::cout << "Error : bad input => " << strings[0]
+            << std::endl; // potential segfault
   return (false);
 }
 
@@ -174,11 +169,11 @@ void BitcoinExchange::checkHeader(std::string line, char delimiter) {
   if (delimiter == ',') {
     if (strings.size() != 2 || strings[0] != "date" ||
         strings[1] != "exchange_rate") {
-      std::cout << "No headers in datafile";
+      throw std::invalid_argument("No headers in datafile");
     }
   } else if (strings.size() != 2 || strings[0] != "date" ||
              strings[1] != "value") {
-    std::cout << "No headers in Inputfile";
+    throw std::invalid_argument("No headers in inputfile");
   }
 }
 
