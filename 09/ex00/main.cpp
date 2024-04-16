@@ -1,18 +1,20 @@
 #include "BitcoinExchange.hpp"
+#include <stdexcept>
 
-int main(int ac, char **av) {
-  try {
-    if (ac < 2)
-      throw(1);
-    else if (ac == 2)
-      BitcoinExchange(std::string(av[1]));
-  } catch (int i) {
-    // print message about not enough arguments;
-    //  if(i == 1)
-    //  	//std::cout << could not read files
-    //  else if(i == 2)
-    //  	//std::cout << no multiple files
-  } catch (...) {
-    // print program error
+int main(int ac, char **av)
+{
+  try
+  {
+    if (ac != 2)
+        throw std::invalid_argument("Only take 1 input. Thanks");
+    BitcoinExchange(std::string(av[1]));
+  }
+  catch (std::exception &e)
+  {
+      std::cerr << e.what() << std::endl;
+  }
+  catch (...)
+  {
+      std::cerr << "Error somewhere" << std::endl;
   }
 }

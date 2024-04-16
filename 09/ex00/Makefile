@@ -4,7 +4,7 @@ SRCS = main.cpp \
 		BitcoinExchange.cpp
 
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude
+CXXFLAGS = -g3 -std=c++98 -Wall -Wextra -Werror -Iinclude -fsanitize=address
 
 OBJ = $(SRCS:.cpp=.o)
 
@@ -16,7 +16,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
 
-clean: 
+clean:
 	rm -rf ${OBJ}
 
 fclean: clean

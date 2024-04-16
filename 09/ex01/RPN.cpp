@@ -40,7 +40,6 @@ void RPN::calculate(std::string input)
         if(stack.size() < 2)
         {
             throw std::invalid_argument("Error");
-            return;
         }
         operand1 = stack.top();
         stack.pop();
@@ -52,7 +51,6 @@ void RPN::calculate(std::string input)
   if (stack.size() != 1)
   {
     throw std::invalid_argument("Error");
-    return;
   }
   std::cout << stack.top() << std::endl;
 }
@@ -62,14 +60,12 @@ void RPN::checkInput(std::string input)
   if (input.size() < 3)
   {
     throw std::invalid_argument("Error");
-    return;
   }
   for (std::string::iterator it = input.begin(); it != input.end(); ++it)
   {
     if (!std::isdigit(*it) && *it != '*' && *it != '+' && *it != '-' && *it != '/')
     {
       throw std::invalid_argument("Error");
-      return;
     }
   }
 }
