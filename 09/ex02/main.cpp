@@ -1,15 +1,10 @@
 #include "PmergeMe.hpp"
 
-//take into account INT_MAX
+// take into account INT_MAX
 
-int main(int ac, char **argv)
-{
-    try
-    {
+int main(int ac, char **argv) {
+  try {
 
-    }
-    catch(std::exception &e)
-    {
-
-    }
+  } catch (std::exception &e) {
+  }
 }

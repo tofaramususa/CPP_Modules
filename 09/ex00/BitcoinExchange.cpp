@@ -11,6 +11,53 @@ BitcoinExchange::~BitcoinExchange() {} //
 // } // operator overload
 //
 
+BitcoinExchange::BitcoinExchange(std::string inputFile) {
+  try {
+    this->populateExchangeDatabase();
+    this->performSearch(inputFile);
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+}
+
+void BitcoinExchange::populateExchangeDatabase() {
+  std::string line;
+  std::ifstream data("data.csv");
+  try {
+    if (data.is_open()) {
+      std::getline(data, line); // check the header here
+      this->checkHeader(line, ',');
+      while (std::getline(data, line)) {
+        parseLine(line, ',');
+      }
+      data.close();
+    }
+  } catch (std::exception &e) {
+    if (data.is_open())
+      data.close();
+    std::cout << e.what() << std::endl;
+  }
+}
+
+void BitcoinExchange::performSearch(std::string InputFile) {
+  std::string line;
+  std::ifstream data(InputFile);
+  try {
+    if (data.is_open()) {
+      std::getline(data, line);
+      this->checkHeader(line, '|');
+      while (std::getline(data, line)) {
+        parseLine(line, '|');
+      }
+      data.close();
+    }
+  } catch (std::exception &e) {
+    if (data.is_open())
+      data.close();
+    std::cout << e.what() << std::endl;
+  }
+}
+
 bool BitcoinExchange::checkDate(std::vector<std::string> strings) {
   std::tm fullDate;
   std::vector<std::string> dateStrings;
@@ -30,8 +77,8 @@ bool BitcoinExchange::checkDate(std::vector<std::string> strings) {
   if (std::sscanf(strings[0].c_str(), "%4d-%2d-%2d", &fullDate.tm_year,
                   &fullDate.tm_mon, &fullDate.tm_mday)) {
     if (fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 &&
-        fullDate.tm_mday < 32 && fullDate.tm_year > 2010 &&
-        fullDate.tm_year < 2020) {
+        fullDate.tm_mday < 32 && fullDate.tm_year > 1900 &&
+        fullDate.tm_year < 2050) {
       return (true);
     }
   }
@@ -138,7 +185,6 @@ void BitcoinExchange::checkHeader(std::string line, char delimiter) {
   while (getline(lineString, token, delimiter)) {
     strings.push_back(token);
   }
-
   if (delimiter == ',') {
     if (strings.size() != 2 || strings[0] != "date" ||
         strings[1] != "exchange_rate") {
@@ -161,51 +207,4 @@ BitcoinExchange::getLowestDate(std::string date) {
   }
   --it;
   return it;
-}
-
-BitcoinExchange::BitcoinExchange(std::string inputFile) {
-  try {
-    this->populateExchangeDatabase();
-    this->performSearch(inputFile);
-  } catch (std::exception &e) {
-    std::cout << e.what() << std::endl;
-  }
-}
-
-void BitcoinExchange::populateExchangeDatabase() {
-  std::string line;
-  std::ifstream data("data.csv");
-  try {
-    if (data.is_open()) {
-      std::getline(data, line); // check the header here
-      this->checkHeader(line, ',');
-      while (std::getline(data, line)) {
-        parseLine(line, ',');
-      }
-      data.close();
-    }
-  } catch (std::exception &e) {
-    if (data.is_open())
-      data.close();
-    std::cout << e.what() << std::endl;
-  }
-}
-
-void BitcoinExchange::performSearch(std::string InputFile) {
-  std::string line;
-  std::ifstream data(InputFile);
-  try {
-    if (data.is_open()) {
-      std::getline(data, line);
-      this->checkHeader(line, '|');
-      while (std::getline(data, line)) {
-        parseLine(line, '|');
-      }
-      data.close();
-    }
-  } catch (std::exception &e) {
-    if (data.is_open())
-      data.close();
-    std::cout << e.what() << std::endl;
-  }
 }
