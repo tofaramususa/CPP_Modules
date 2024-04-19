@@ -4,7 +4,7 @@ SRCS = main.cpp \
 		PmergeMe.cpp
 
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude -fsanitize=address
 
 OBJ = $(SRCS:.cpp=.o)
 
