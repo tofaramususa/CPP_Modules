@@ -22,7 +22,7 @@ BitcoinExchange::BitcoinExchange(std::string inputFile) {
 
 void BitcoinExchange::populateExchangeDatabase() {
   std::string line;
-  std::ifstream data("data.csv");
+  std::ifstream data("data.csv", std::ifstream::in);
   try {
     if (data.is_open()) {
       std::getline(data, line); // check the header here
@@ -41,7 +41,7 @@ void BitcoinExchange::populateExchangeDatabase() {
 
 void BitcoinExchange::performSearch(std::string InputFile) {
   std::string line;
-  std::ifstream data(InputFile);
+  std::ifstream data(InputFile.c_str(), std::ifstream::in);
   try {
     if (data.is_open()) {
       std::getline(data, line);
