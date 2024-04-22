@@ -1,7 +1,7 @@
 NAME = PmergeMe
 
 SRCS = main.cpp \
-		PmergeMe.cpp
+		PmergeMe.cpp \
 
 CXX = c++
 CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude -fsanitize=address
@@ -16,7 +16,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
 
-clean: 
+clean:
 	rm -rf ${OBJ}
 
 fclean: clean
