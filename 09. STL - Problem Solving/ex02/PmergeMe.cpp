@@ -47,11 +47,11 @@ PmergeMe::PmergeMe(char *argv[]) : listsortingtime(0), dequesortingtime(0)
   clock_t start = std::clock();
   this->sortDeque(arg2);
   clock_t end = std::clock();
-  this->dequesortingtime = static_cast<double>(end - start) / static_cast<double>(CLOCKS_PER_SEC);
+  this->dequesortingtime = static_cast<double>(end - start) / static_cast<double>(CLOCKS_PER_SEC) * 1000000;
   start = std::clock();
   this->sortList(arg1);
   end = std::clock();
-  this->listsortingtime = static_cast<double>(end - start) / static_cast<double>(CLOCKS_PER_SEC);
+  this->listsortingtime = static_cast<double>(end - start) / static_cast<double>(CLOCKS_PER_SEC) * 1000000;
   std::cout << "After: ";
   for(size_t i = 0; i < arg2.size(); ++i)
   {
@@ -145,7 +145,7 @@ void PmergeMe::sortList(std::list<int> arg)
     for (std::list<int>::iterator it = smallNumbers.begin(); it != smallNumbers.end(); ++it)
     {
         int element = *it;
-        std::list<int>::iterator insertPos = std::upper_bound(largeNumbers.begin(), largeNumbers.end(), element);
+        std::list<int>::iterator insertPos = binarySearch(largeNumbers.begin(), largeNumbers.end(), element);
         largeNumbers.insert(insertPos, element);
     }
     arg.swap(largeNumbers);
