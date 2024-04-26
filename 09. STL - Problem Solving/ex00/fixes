@@ -1,0 +1,4 @@
+Handle the spaces like between the date 201 3 - 1 - 02
+Handle the case where there is no data.csv at all
+Handle  when data.csv has wrong headers(throw an error and exit)
+Handle the case where there is actual data in data.csv after header files

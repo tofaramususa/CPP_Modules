@@ -9,11 +9,11 @@ int main(int ac, char **av)
         RPN test(av[1]);
         return (1);
     }
-    throw std::invalid_argument("Only take 1 input string");
+    throw std::invalid_argument("Only takes excutable and one argument");
   }
   catch (std::exception &e)
   {
-    std::cerr << e.what() << std::endl;
+    std::cout << e.what() << std::endl;
   }
   return(0);
 }

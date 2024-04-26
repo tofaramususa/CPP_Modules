@@ -9,17 +9,18 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <stdexcept>
 
 class BitcoinExchange
 {
     public:
-        BitcoinExchange(std::string inputFile); // input the file from the input.txt
+        BitcoinExchange(std::string inputFile);
         ~BitcoinExchange();
-        BitcoinExchange(BitcoinExchange &other);
-        BitcoinExchange &operator=(BitcoinExchange &other);
 
     private:
         BitcoinExchange();
+        BitcoinExchange(BitcoinExchange &other);
+        BitcoinExchange &operator=(BitcoinExchange &other);
         void populateExchangeDatabase();
         void performSearch(std::string inputFile);
         std::map<std::string, double> exchangeRateDB;

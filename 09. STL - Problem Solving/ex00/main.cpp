@@ -6,7 +6,7 @@ int main(int ac, char **av)
   try
   {
     if (ac != 2)
-        throw std::invalid_argument("Only take 1 input. Thanks");
+        throw std::invalid_argument("Please input one argument.Only.Thanks");
     BitcoinExchange(std::string(av[1]));
   }
   catch (std::exception &e)

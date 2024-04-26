@@ -1,16 +1,23 @@
 #include "RPN.hpp"
-#include <cctype>
-#include <cmath>
-#include <stdexcept>
 
-// RPN::RPN() {}                       // default
-// RPN::RPN(RPN &other) {} // copy
-RPN::~RPN() {} //
-// destructor RPN &RPN::operator=(RPN
-// &other) {
+RPN::RPN()
+{
 
-//   return *this;
-// } // operator overload
+}
+RPN::RPN(RPN &other)
+{
+    (void) other;
+}
+RPN::~RPN()
+{
+
+}
+
+RPN &RPN::operator=(RPN &other)
+{
+    (void) other;
+    return *this;
+}
 
 RPN::RPN(const std::string &argument)
 {
@@ -21,7 +28,22 @@ RPN::RPN(const std::string &argument)
     this->calculate(input);
   } catch (std::exception &e)
   {
-    std::cerr << e.what() << std::endl;
+    std::cout << e.what() << std::endl;
+  }
+}
+
+void RPN::checkInput(std::string input)
+{
+  if (input.size() < 3)
+  {
+    throw std::invalid_argument("Error");
+  }
+  for (std::string::iterator it = input.begin(); it != input.end(); ++it)
+  {
+    if (!std::isdigit(*it) && *it != '*' && *it != '+' && *it != '-' && *it != '/')
+    {
+      throw std::invalid_argument("Error");
+    }
   }
 }
 
@@ -53,21 +75,6 @@ void RPN::calculate(std::string input)
     throw std::invalid_argument("Error");
   }
   std::cout << stack.top() << std::endl;
-}
-
-void RPN::checkInput(std::string input)
-{
-  if (input.size() < 3)
-  {
-    throw std::invalid_argument("Error");
-  }
-  for (std::string::iterator it = input.begin(); it != input.end(); ++it)
-  {
-    if (!std::isdigit(*it) && *it != '*' && *it != '+' && *it != '-' && *it != '/')
-    {
-      throw std::invalid_argument("Error");
-    }
-  }
 }
 
 std::string RPN::removeSpaces(std::string line)

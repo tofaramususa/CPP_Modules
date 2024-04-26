@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <ctime>
 #include <deque>
-#include <limits>
+#include <climits>
 
 class PmergeMe
 {
@@ -18,10 +18,10 @@ class PmergeMe
     public:
         PmergeMe(char *argv[]);
         ~PmergeMe();
-        PmergeMe(PmergeMe &other);
-        PmergeMe &operator=(PmergeMe &other);
 
     private:
+        PmergeMe(PmergeMe &other);
+        PmergeMe &operator=(PmergeMe &other);
         PmergeMe();
         void sortDeque(std::deque<int> &arg);
         void sortList(std::list<int> arg);

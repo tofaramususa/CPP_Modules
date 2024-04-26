@@ -7,18 +7,20 @@
 #include <stack>
 #include <string>
 #include <stdexcept>
+#include <cctype>
+#include <stdexcept>
 
 class RPN
 {
     public:
     RPN(const std::string &argument);
     ~RPN();
-    RPN(RPN &other);
-    RPN &operator=(RPN &other);
-    void calculate(std::string input);
 
     private:
+    void calculate(std::string input);
     RPN();
+    RPN(RPN &other);
+    RPN &operator=(RPN &other);
     void checkInput(std::string);
     std::string removeSpaces(std::string value);
     int operation(int operand1, int operand2, char c);

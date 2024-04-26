@@ -1,7 +1,8 @@
 #include "PmergeMe.hpp"
 
 
-// PmergeMe::PmergeMe() {}                       // default
+PmergeMe::PmergeMe()
+{}                       // default
 // PmergeMe::PmergeMe(PmergeMe &other) {} // copy
 PmergeMe::~PmergeMe() {} //
 // destructor PmergeMe &PmergeMe::operator=(PmergeMe
@@ -12,14 +13,14 @@ PmergeMe::~PmergeMe() {} //
 
 static void printListTime(double totalTime, int size)
 {
-    std::cout << "Time to process a range of "<< size <<" elements with std::list<int> : " << totalTime << " us" << std::endl;
+    std::cout << "Time to process a range of "<< size <<" elements with std::list<int> : " << \
+    totalTime << " us" << std::endl;
 }
 static void printDequeTime(double totalTime, int size)
 {
-    std::cout << "Time to process a range of "<< size <<" elements with std::deque<int> : " << totalTime << " us" << std::endl;
+    std::cout << "Time to process a range of "<< size <<" elements with std::deque<int> : " << \
+    totalTime << " us" << std::endl;
 }
-
-
 
 PmergeMe::PmergeMe(char *argv[]) : listsortingtime(0), dequesortingtime(0)
 {

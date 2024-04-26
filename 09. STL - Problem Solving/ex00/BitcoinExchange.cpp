@@ -1,49 +1,64 @@
 #include "BitcoinExchange.hpp"
-#include <stdexcept>
 
-// BitcoinExchange::BitcoinExchange() {}                       // default
-// BitcoinExchange::BitcoinExchange(BitcoinExchange &other) {} // copy
-BitcoinExchange::~BitcoinExchange() {} //
-// destructor BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange
-// &other) {
+BitcoinExchange::~BitcoinExchange() {}
 
-//   return *this;
-// } // operator overload
-//
+BitcoinExchange::BitcoinExchange(BitcoinExchange &other)
+{
+    *this = other;
+}
 
-BitcoinExchange::BitcoinExchange(std::string inputFile) {
-  try {
+BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange &other)
+{
+    if(this != &other)
+    {
+        this->exchangeRateDB = other.exchangeRateDB;
+    }
+  return *this;
+}
+
+BitcoinExchange::BitcoinExchange(std::string inputFile)
+{
+  try
+  {
     this->populateExchangeDatabase();
     this->performSearch(inputFile);
-  } catch (std::exception &e) {
+  } catch (std::exception &e)
+  {
     std::cout << e.what() << std::endl;
   }
 }
 
-void BitcoinExchange::populateExchangeDatabase() {
+void BitcoinExchange::populateExchangeDatabase()
+{
   std::string line;
-  std::ifstream data("data.csv", std::ifstream::in);
-  try {
-    if (data.is_open()) {
+  std::ifstream data("data.csv", std::ifstream::in); //handle case where there is no data.csv
+  try
+  {
+    if (data.is_open())
+    {
       std::getline(data, line); // check the header here
       this->checkHeader(line, ',');
-      while (std::getline(data, line)) {
+      while (std::getline(data, line))
+      {
         parseLine(line, ',');
       }
       data.close();
     }
-  } catch (std::exception &e) {
+  } catch (std::exception &e)
+  {
     if (data.is_open())
       data.close();
     std::cout << e.what() << std::endl;
   }
 }
 
-void BitcoinExchange::performSearch(std::string InputFile) {
+void BitcoinExchange::performSearch(std::string InputFile)
+{
   std::string line;
   std::ifstream data(InputFile.c_str(), std::ifstream::in);
   try {
-    if (data.is_open()) {
+    if (data.is_open())
+    {
       std::getline(data, line);
       this->checkHeader(line, '|');
       while (std::getline(data, line)) {
@@ -51,34 +66,41 @@ void BitcoinExchange::performSearch(std::string InputFile) {
       }
       data.close();
     }
-  } catch (std::exception &e) {
+  } catch (std::exception &e)
+  {
     if (data.is_open())
       data.close();
     std::cout << e.what() << std::endl;
   }
 }
 
-bool BitcoinExchange::checkDate(std::vector<std::string> strings) {
+bool BitcoinExchange::checkDate(std::vector<std::string> strings)
+{
   std::tm fullDate;
   std::vector<std::string> dateStrings;
   std::string token;
 
-  if (!strings.size()) {
+  if (!strings.size())
+  {
     return (false);
   }
   std::istringstream lineString(strings[0]);
-  while (getline(lineString, token, '-')) {
+  while (getline(lineString, token, '-'))
+  {
     dateStrings.push_back(token);
   }
   if (dateStrings.size() != 3 || dateStrings[0].size() != 4 ||
-      dateStrings[1].size() != 2 || dateStrings[2].size() != 2) {
+      dateStrings[1].size() != 2 || dateStrings[2].size() != 2)
+  {
     return (false);
   }
   if (std::sscanf(strings[0].c_str(), "%4d-%2d-%2d", &fullDate.tm_year,
-                  &fullDate.tm_mon, &fullDate.tm_mday)) {
+                  &fullDate.tm_mon, &fullDate.tm_mday))
+  {
     if (fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 &&
         fullDate.tm_mday < 32 && fullDate.tm_year > 1900 &&
-        fullDate.tm_year < 2050) {
+        fullDate.tm_year < 2050)
+    {
       return (true);
     }
   }
@@ -87,7 +109,8 @@ bool BitcoinExchange::checkDate(std::vector<std::string> strings) {
 
 bool BitcoinExchange::validateInputLine(std::vector<std::string> strings) {
 
-  if (strings.size() != 2 && strings.size()) {
+  if (strings.size() != 2 && strings.size())
+  {
     std::cout << "Error: bad input => " << strings[0] << std::endl;
     return (false);
   }
@@ -108,12 +131,14 @@ void BitcoinExchange::checkInputLine(std::vector<std::string> strings) {
                 << retrieveDate->second * strtod(strings[1].c_str(), NULL)
                 << std::endl;
     }
-  } catch (std::exception &e) {
+  } catch (std::exception &e)
+  {
     std::cout << e.what() << std::endl;
   }
 }
 
-void BitcoinExchange::parseLine(std::string line, char delimiter) {
+void BitcoinExchange::parseLine(std::string line, char delimiter)
+{
   std::vector<std::string> strings;
   std::istringstream lineString(removeSpaces(line));
   std::string token;
@@ -128,7 +153,8 @@ void BitcoinExchange::parseLine(std::string line, char delimiter) {
     this->checkInputLine(strings);
 }
 
-bool BitcoinExchange::isValidValue(std::string &value) {
+bool BitcoinExchange::isValidValue(std::string &value)
+{
   char *endPtr;
   double floatValue;
 
@@ -136,7 +162,8 @@ bool BitcoinExchange::isValidValue(std::string &value) {
     return false;
   try {
     floatValue = std::strtod(value.c_str(), &endPtr);
-  } catch (std::exception &e) {
+  } catch (std::exception &e)
+  {
     std::cout << e.what() << std::endl;
     return (false);
   }
@@ -152,21 +179,24 @@ bool BitcoinExchange::isValidValue(std::string &value) {
 void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings) {
   std::tm fullDate;
 
-  if (strings.size() == 2) {
+  if (strings.size() == 2)
+  {
     if (std::sscanf(strings[0].c_str(), "%4d-%2d-%2d", &fullDate.tm_year,
                     &fullDate.tm_mon, &fullDate.tm_mday) == 3) {
       if (fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 &&
           fullDate.tm_mday < 32) {
-        this->exchangeRateDB.insert(
-            std::make_pair(strings[0], std::strtod(strings[1].c_str(), NULL)));
+        this->exchangeRateDB.insert(std::make_pair(strings[0], std::strtod(strings[1].c_str(), NULL)));
       }
     }
-  } else {
-    throw std::invalid_argument("failed to add line to exchange rate database");
   }
+  // else
+  // {
+  //   std::cout << "failed to add line to exchange rate database" << std::endl;
+  // }
 }
 
-std::string BitcoinExchange::removeSpaces(std::string line) {
+std::string BitcoinExchange::removeSpaces(std::string line)
+{
   std::string finalString;
   finalString.reserve(line.size());
 
@@ -177,15 +207,18 @@ std::string BitcoinExchange::removeSpaces(std::string line) {
   return (finalString);
 }
 
-void BitcoinExchange::checkHeader(std::string line, char delimiter) {
+void BitcoinExchange::checkHeader(std::string line, char delimiter)
+{
   std::vector<std::string> strings;
   std::istringstream lineString(removeSpaces(line));
   std::string token;
 
-  while (getline(lineString, token, delimiter)) {
+  while (getline(lineString, token, delimiter))
+  {
     strings.push_back(token);
   }
-  if (delimiter == ',') {
+  if (delimiter == ',')
+  {
     if (strings.size() != 2 || strings[0] != "date" ||
         strings[1] != "exchange_rate") {
       throw std::invalid_argument("No headers in datafile");
@@ -197,7 +230,8 @@ void BitcoinExchange::checkHeader(std::string line, char delimiter) {
 }
 
 std::map<std::string, double>::iterator
-BitcoinExchange::getLowestDate(std::string date) {
+BitcoinExchange::getLowestDate(std::string date)
+{
   std::map<std::string, double>::iterator it;
 
   it = exchangeRateDB.lower_bound(date);
