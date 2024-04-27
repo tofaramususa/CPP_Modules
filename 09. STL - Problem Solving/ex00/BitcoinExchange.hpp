@@ -25,13 +25,13 @@ class BitcoinExchange
         void performSearch(std::string inputFile);
         std::map<std::string, double> exchangeRateDB;
 
-        //parsers and error_checking
         void addLineToDatabase(std::vector<std::string> strings);
         void parseLine(std::string line, char delimiter);
         bool isValidValue(std::string &value);
         void checkInputLine(std::vector<std::string> strings);
         bool validateInputLine(std::vector<std::string> strings);
         std::string removeSpaces(std::string line);
+        std::string strtrim(std::string line);
         std::map<std::string, double>::iterator getLowestDate(std::string date);
         void checkHeader(std::string line, char delimiter);
         bool checkDate(std::vector<std::string> strings);

@@ -31,18 +31,21 @@ BitcoinExchange::BitcoinExchange(std::string inputFile)
 void BitcoinExchange::populateExchangeDatabase()
 {
   std::string line;
-  std::ifstream data("data.csv", std::ifstream::in); //handle case where there is no data.csv
+  std::ifstream data("data.csv", std::ifstream::in);
   try
   {
     if (data.is_open())
     {
-      std::getline(data, line); // check the header here
+      std::getline(data, line);
       this->checkHeader(line, ',');
       while (std::getline(data, line))
       {
         parseLine(line, ',');
       }
       data.close();
+    }
+    else {
+        throw(1);
     }
   } catch (std::exception &e)
   {
@@ -61,10 +64,14 @@ void BitcoinExchange::performSearch(std::string InputFile)
     {
       std::getline(data, line);
       this->checkHeader(line, '|');
-      while (std::getline(data, line)) {
+      while (std::getline(data, line))
+      {
         parseLine(line, '|');
       }
       data.close();
+    }
+    else {
+        throw(1);
     }
   } catch (std::exception &e)
   {
@@ -107,24 +114,28 @@ bool BitcoinExchange::checkDate(std::vector<std::string> strings)
   return (false);
 }
 
-bool BitcoinExchange::validateInputLine(std::vector<std::string> strings) {
-
+bool BitcoinExchange::validateInputLine(std::vector<std::string> strings)
+{
   if (strings.size() != 2 && strings.size())
   {
     std::cout << "Error: bad input => " << strings[0] << std::endl;
     return (false);
   }
-  if (checkDate(strings) && isValidValue(strings[1])) {
+  if (checkDate(strings) && isValidValue(strings[1]))
+  {
     return (true);
-  } else if (strings.size()) {
+  } else if (strings.size()) 
+  {
     std::cout << "Error: bad input => " << strings[0] << std::endl;
   }
   return (false);
 }
 
-void BitcoinExchange::checkInputLine(std::vector<std::string> strings) {
+void BitcoinExchange::checkInputLine(std::vector<std::string> strings)
+{
   try {
-    if (this->validateInputLine(strings)) {
+    if (this->validateInputLine(strings))
+	{
       std::map<std::string, double>::iterator retrieveDate =
           this->getLowestDate(strings[0]);
       std::cout << strings[0] << " => " << strings[1] << " = "
@@ -140,12 +151,12 @@ void BitcoinExchange::checkInputLine(std::vector<std::string> strings) {
 void BitcoinExchange::parseLine(std::string line, char delimiter)
 {
   std::vector<std::string> strings;
-  std::istringstream lineString(removeSpaces(line));
+  std::istringstream lineString(line);
   std::string token;
 
-  while (getline(lineString, token, delimiter)) // create array of strings
+  while (getline(lineString, token, delimiter))
   {
-    strings.push_back(token);
+    strings.push_back(this->strtrim(token));
   }
   if (delimiter == ',')
     this->addLineToDatabase(strings);
@@ -176,7 +187,8 @@ bool BitcoinExchange::isValidValue(std::string &value)
   return (true);
 }
 
-void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings) {
+void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings)
+{
   std::tm fullDate;
 
   if (strings.size() == 2)
@@ -189,10 +201,6 @@ void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings) {
       }
     }
   }
-  // else
-  // {
-  //   std::cout << "failed to add line to exchange rate database" << std::endl;
-  // }
 }
 
 std::string BitcoinExchange::removeSpaces(std::string line)
@@ -200,12 +208,37 @@ std::string BitcoinExchange::removeSpaces(std::string line)
   std::string finalString;
   finalString.reserve(line.size());
 
-  for (std::string::iterator it = line.begin(); it != line.end(); ++it) {
+  for (std::string::iterator it = line.begin(); it != line.end(); ++it)
+  {
     if (!std::isspace(static_cast<unsigned char>(*it)))
       finalString.push_back(*it);
   }
   return (finalString);
 }
+
+std::string BitcoinExchange::strtrim(std::string line)
+{
+  std::string finalString;
+  finalString.reserve(line.size());
+
+  std::string::iterator it = line.begin();
+  while(it != line.end())
+  {
+    if (!std::isspace(static_cast<unsigned char>(*it)))
+        break;
+    ++it;
+  }
+  while(it != line.end())
+  {
+      if (!std::isspace(static_cast<unsigned char>(*it)))
+            finalString.push_back(*it);
+      else
+            break;
+      ++it;
+  }
+  return (finalString);
+}
+
 
 void BitcoinExchange::checkHeader(std::string line, char delimiter)
 {

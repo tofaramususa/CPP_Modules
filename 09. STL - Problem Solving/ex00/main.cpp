@@ -1,12 +1,11 @@
 #include "BitcoinExchange.hpp"
-#include <stdexcept>
 
 int main(int ac, char **av)
 {
   try
   {
     if (ac != 2)
-        throw std::invalid_argument("Please input one argument.Only.Thanks");
+        throw std::invalid_argument("Only takes excutable and one argument");
     BitcoinExchange(std::string(av[1]));
   }
   catch (std::exception &e)
@@ -15,6 +14,6 @@ int main(int ac, char **av)
   }
   catch (...)
   {
-      std::cerr << "Error somewhere" << std::endl;
+      std::cerr << "Error with data.csv or the input file does not exist" << std::endl;
   }
 }

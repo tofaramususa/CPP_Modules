@@ -54,4 +54,8 @@ iterator binarySearch(iterator start, iterator end, const T& value)
     return start;
 }
 
+void	printListTime(double totalTime, int size);
+void	printDequeTime(double totalTime, int size);
+
+
 #endif
