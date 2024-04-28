@@ -21,6 +21,10 @@ BitcoinExchange::BitcoinExchange(std::string inputFile)
   try
   {
     this->populateExchangeDatabase();
+	if(this->exchangeRateDB.size() == 0)
+	{
+		throw std::invalid_argument("The exchange database has no values");
+	}
     this->performSearch(inputFile);
   } catch (std::exception &e)
   {
@@ -44,7 +48,8 @@ void BitcoinExchange::populateExchangeDatabase()
       }
       data.close();
     }
-    else {
+    else
+	{
         throw(1);
     }
   } catch (std::exception &e)
@@ -133,13 +138,14 @@ bool BitcoinExchange::validateInputLine(std::vector<std::string> strings)
 
 void BitcoinExchange::checkInputLine(std::vector<std::string> strings)
 {
-  try {
+  try
+  {
     if (this->validateInputLine(strings))
 	{
       std::map<std::string, double>::iterator retrieveDate =
           this->getLowestDate(strings[0]);
       std::cout << strings[0] << " => " << strings[1] << " = "
-                << retrieveDate->second * strtod(strings[1].c_str(), NULL)
+                << retrieveDate->second * std::strtod(strings[1].c_str(), NULL)
                 << std::endl;
     }
   } catch (std::exception &e)
@@ -196,9 +202,10 @@ void BitcoinExchange::addLineToDatabase(std::vector<std::string> strings)
     if (std::sscanf(strings[0].c_str(), "%4d-%2d-%2d", &fullDate.tm_year,
                     &fullDate.tm_mon, &fullDate.tm_mday) == 3) {
       if (fullDate.tm_mon > 0 && fullDate.tm_mon < 13 && fullDate.tm_mday > 0 &&
-          fullDate.tm_mday < 32) {
-        this->exchangeRateDB.insert(std::make_pair(strings[0], std::strtod(strings[1].c_str(), NULL)));
-      }
+          fullDate.tm_mday < 32)
+		{
+			this->exchangeRateDB.insert(std::make_pair(strings[0], std::strtod(strings[1].c_str(), NULL)));
+		}
     }
   }
 }
@@ -253,8 +260,10 @@ void BitcoinExchange::checkHeader(std::string line, char delimiter)
   if (delimiter == ',')
   {
     if (strings.size() != 2 || strings[0] != "date" ||
-        strings[1] != "exchange_rate") {
+        strings[1] != "exchange_rate") 
+	{
       throw std::invalid_argument("No headers in datafile");
+	   std::exit(1);
     }
   } else if (strings.size() != 2 || strings[0] != "date" ||
              strings[1] != "value") {

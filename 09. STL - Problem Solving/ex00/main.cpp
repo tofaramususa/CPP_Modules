@@ -11,9 +11,12 @@ int main(int ac, char **av)
   catch (std::exception &e)
   {
       std::cerr << e.what() << std::endl;
+	  return(1);
   }
   catch (...)
   {
-      std::cerr << "Error with data.csv or the input file does not exist" << std::endl;
+    std::cerr << "Error with data.csv or the input file does not exist" << std::endl;
+	return(1);
   }
+  return(0);
 }
