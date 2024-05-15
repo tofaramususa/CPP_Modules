@@ -129,7 +129,7 @@ bool BitcoinExchange::validateInputLine(std::vector<std::string> strings)
   if (checkDate(strings) && isValidValue(strings[1]))
   {
     return (true);
-  } else if (strings.size()) 
+  } else if (strings.size())
   {
     std::cout << "Error: bad input => " << strings[0] << std::endl;
   }
@@ -260,14 +260,14 @@ void BitcoinExchange::checkHeader(std::string line, char delimiter)
   if (delimiter == ',')
   {
     if (strings.size() != 2 || strings[0] != "date" ||
-        strings[1] != "exchange_rate") 
+        strings[1] != "exchange_rate")
 	{
-      throw std::invalid_argument("No headers in datafile");
+      throw std::invalid_argument("No proper headers in datafile");
 	   std::exit(1);
     }
   } else if (strings.size() != 2 || strings[0] != "date" ||
              strings[1] != "value") {
-    throw std::invalid_argument("No headers in inputfile");
+    throw std::invalid_argument("No proper headers in inputfile");
   }
 }
 

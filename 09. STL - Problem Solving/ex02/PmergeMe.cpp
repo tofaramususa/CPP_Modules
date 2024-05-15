@@ -27,8 +27,10 @@ PmergeMe::PmergeMe(char *argv[]) : listsortingtime(0), dequesortingtime(0)
 	while (argv && *argv)
 	{
 		value = std::strtol(*argv, &endPtr, 10);
-		if (value < 0 || value > INT_MAX)
+		if (value < 0)
 			throw std::invalid_argument("Not a positive integer");
+		else if (value > INT_MAX)
+			throw std::invalid_argument("Value above max integer");
 		arg1.push_back(value);
 		arg2.push_back(value);
 		++argv;

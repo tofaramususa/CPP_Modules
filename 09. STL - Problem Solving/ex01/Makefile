@@ -4,8 +4,7 @@ SRCS = main.cpp \
 		RPN.cpp \
 
 CXX = c++
-CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude -fsanitize=address
-
+CXXFLAGS = -std=c++98 -Wall -Wextra -Werror -Iinclude
 OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
@@ -16,7 +15,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(CXX) -o $(NAME) $(OBJ) $(CXXFLAGS)
 
-clean: 
+clean:
 	rm -rf ${OBJ}
 
 fclean: clean

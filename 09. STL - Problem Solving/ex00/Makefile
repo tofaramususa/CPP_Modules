@@ -4,7 +4,7 @@ SRCS = main.cpp \
 		BitcoinExchange.cpp
 
 CXX = c++
-CXXFLAGS = -g3 -std=c++98 -Wall -Wextra -Werror -Iinclude -fsanitize=address
+CXXFLAGS = -g3 -std=c++98 -Wall -Wextra -Werror -Iinclude
 
 OBJ = $(SRCS:.cpp=.o)
 
